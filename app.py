@@ -21,6 +21,22 @@ import datetime
 import time
 #======python的函數庫==========
 
+#1============================================================# 
+from __future__ import print_function
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+
+# If modifying these scopes, delete the file token.pickle.
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+
+# The ID and range of a sample spreadsheet.
+SAMPLE_SPREADSHEET_ID = '1Q9-lzsykHbrt0WTuSfLrpiycje5KjWxHLc9ttr6NwHU'
+SAMPLE_RANGE_NAME = '工作表1'
+#1============================================================# add 1
+
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 # Channel Access Token
