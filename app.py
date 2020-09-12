@@ -1,3 +1,7 @@
+#0==================================#
+from __future__ import print_function
+#0==================================#
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -22,7 +26,6 @@ import time
 #======python的函數庫==========
 
 #1============================================================# 
-from __future__ import print_function
 import pickle
 import os.path
 from googleapiclient.discovery import build
