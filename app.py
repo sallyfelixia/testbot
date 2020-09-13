@@ -78,8 +78,11 @@ def handle_message(event):
     msg = event.message.text
     user_id = event.source.user_id
 
-    if 'test' in msg:
+    if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
+        line_bot_api.reply_message(event.reply_token, message)
+    if 'test2' in msg:
+        message = TextSendMessage(text= str(sheet.cell(1,2).value))
         line_bot_api.reply_message(event.reply_token, message)
     
 
