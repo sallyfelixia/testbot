@@ -1,2 +1,4 @@
-line-bot-sdk
-flask
+line-bot-sdk==1.17.0
+Flask==1.1.2
+gspread==3.6.0
+oauth2client==4.1.3
