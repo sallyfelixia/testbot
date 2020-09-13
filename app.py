@@ -21,7 +21,7 @@ import datetime
 import time
 import traceback
 #======python的函數庫==========
-
+'''
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -32,6 +32,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 client = gspread.authorize(creds)
 sheet = client.open("test_1_db").sheet1
+'''
 
 def static_vars(**kwargs):
     def decorate(func):
