@@ -1,7 +1,3 @@
-#0==================================#
-from __future__ import print_function
-#0==================================#
-
 from flask import Flask, request, abort
 
 from linebot import (
@@ -23,27 +19,36 @@ from Function import *
 import tempfile, os
 import datetime
 import time
+import traceback
 #======python的函數庫==========
 
-#1============================================================# 
-import pickle
-import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
-# If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
-# The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1Q9-lzsykHbrt0WTuSfLrpiycje5KjWxHLc9ttr6NwHU'
-SAMPLE_RANGE_NAME = '工作表1'
-#1============================================================# add 1
+
+scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+
+client = gspread.authorize(creds)
+sheet = client.open("test_1_db").sheet1
+
+def static_vars(**kwargs):
+    def decorate(func):
+        for k in kwargs:
+            setattr(func, k, kwargs[k])
+        return func
+    return decorate
+
+
+
 
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
+
 # Channel Access Token
 line_bot_api = LineBotApi('MBzS1ky44RKM/kfRt70FjKCXIcjdPtbPTirlnrBcllV3dlJL+j5cHCk/rfEWHM/Mnnfx2aak3NcWJzSVk/AQ9Fh2wu+YrldRU7uMowmsTbLoMzmYqLx4mLb5iXNSxY8fE5el4n071I8LFQCOI17e8AdB04t89/1O/w1cDnyilFU=')
+
 # Channel Secret
 handler = WebhookHandler('8d52e9a3b33bafa81896c30ee33144ad')
 
@@ -63,34 +68,19 @@ def callback():
     return 'OK'
 
 
+
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
+@static_vars(counter=0)
 def handle_message(event):
+
     msg = event.message.text
-    if '最新合作廠商' in msg:
-        message = imagemap_message()
+    user_id = event.source.user_id
+
+    if 'test' in msg:
+        message = TextSendMessage(text= 'Hello Sally')
         line_bot_api.reply_message(event.reply_token, message)
-    elif '最新活動訊息' in msg:
-        message = buttons_message()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '註冊會員' in msg:
-        message = Confirm_Template()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '旋轉木馬' in msg:
-        message = Carousel_Template()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '圖片畫廊' in msg:
-        message = test()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '功能列表' in msg:
-        message = function_list()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'test' in msg:
-        message = TextSendMessage(text='測試')
-        line_bot_api.reply_message(event.reply_token, message)
-    else:
-        message = TextSendMessage(text=msg)
-        line_bot_api.reply_message(event.reply_token, message)
+    
 
 import os
 if __name__ == "__main__":
