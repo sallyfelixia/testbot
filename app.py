@@ -78,11 +78,12 @@ def row(index):
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 @static_vars(counter=0)
-
 def handle_message(event):
 
     msg = event.message.text
     user_id = event.source.user_id
+    _row = sheet.find('0').row
+    
     if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
         line_bot_api.reply_message(event.reply_token, message)
@@ -90,16 +91,11 @@ def handle_message(event):
         message = TextSendMessage(text= str(sheet.cell(1,2).value))
         line_bot_api.reply_message(event.reply_token, message)
     if 'test3' in msg:
-        message = TextSendMessage(text= '進入test3')
-        line_bot_api.reply_message(event.reply_token, message)
-        #row = row(str(0))
-        message = TextSendMessage(text= '成功找到row')
-        line_bot_api.reply_message(event.reply_token, message)
-        sheet.update_cell(row, 1, row-1)
-        sheet.update_cell(row, 2, '測試經度')
-        sheet.update_cell(row, 3, '測試緯度')
-        sheet.update_cell(row+1, 1, 0) 
-        message = TextSendMessage(text= '已寫入'+str(row))
+        sheet.update_cell(_row, 1, row-1)
+        sheet.update_cell(_row, 2, '測試經度')
+        sheet.update_cell(_row, 3, '測試緯度')
+        sheet.update_cell(_row+1, 1, 0) 
+        message = TextSendMessage(text= '已寫入'+str(_row))
         line_bot_api.reply_message(event.reply_token, message)
     
 
