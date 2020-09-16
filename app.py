@@ -29,8 +29,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
-row = 2
-col = 1
 
 client = gspread.authorize(creds)
 sheet = client.open("test_1_db").sheet1
@@ -78,7 +76,6 @@ def handle_message(event):
 
     msg = event.message.text
     user_id = event.source.user_id
-
     if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
         line_bot_api.reply_message(event.reply_token, message)
@@ -86,12 +83,11 @@ def handle_message(event):
         message = TextSendMessage(text= str(sheet.cell(1,2).value))
         line_bot_api.reply_message(event.reply_token, message)
     if 'test3' in msg:
-        sheet.update_cell(row, col, row-1)
-        sheet.update_cell(row, col+1, '測試經度')
-        sheet.update_cell(row, col+2, '測試緯度') 
+        row = next_available_row(worksheet)
+        sheet.update_cell(row, 1, row-1)
+        sheet.update_cell(row, 2, '測試經度')
+        sheet.update_cell(row, 3, '測試緯度') 
         message = TextSendMessage(text= '已寫入('+str(row)+','+str(col)+')')
-        col = col + 3
-        row = row + 1
         line_bot_api.reply_message(event.reply_token, message)
     
 
