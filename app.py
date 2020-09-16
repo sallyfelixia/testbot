@@ -68,11 +68,11 @@ def callback():
         abort(400)
     return 'OK'
 
-def next_available_row(sheet):
+def row(index):
     try:
-        str_list = list(filter(None, sheet.col_values(1)))
-        return len(str_list)+1
-    except:
+        cell = sheet.find(index)
+        return cell.row
+    except gspread.exceptions.CellNotFound:  # or except gspread.CellNotFound:
         return 0
 
 # 處理訊息
@@ -92,12 +92,13 @@ def handle_message(event):
     if 'test3' in msg:
         message = TextSendMessage(text= '進入test3')
         line_bot_api.reply_message(event.reply_token, message)
-        row = next_available_row(sheet)
+        row = row(str(0))
         message = TextSendMessage(text= '成功找到row')
         line_bot_api.reply_message(event.reply_token, message)
         sheet.update_cell(row, 1, row-1)
         sheet.update_cell(row, 2, '測試經度')
-        sheet.update_cell(row, 3, '測試緯度') 
+        sheet.update_cell(row, 3, '測試緯度')
+        sheet.update_cell(row+1, 1, 0) 
         message = TextSendMessage(text= '已寫入'+str(row))
         line_bot_api.reply_message(event.reply_token, message)
     
