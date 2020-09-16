@@ -29,6 +29,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+row = 2
+col = 1
 
 client = gspread.authorize(creds)
 sheet = client.open("test_1_db").sheet1
@@ -71,9 +73,6 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 @static_vars(counter=0)
-
-row = 2
-col = 1
 
 def handle_message(event):
 
