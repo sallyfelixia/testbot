@@ -83,7 +83,7 @@ def handle_message(event):
         message = TextSendMessage(text= str(sheet.cell(1,2).value))
         line_bot_api.reply_message(event.reply_token, message)
     if 'test3' in msg:
-        row = next_available_row(worksheet)
+        row = next_available_row(sheet)
         sheet.update_cell(row, 1, row-1)
         sheet.update_cell(row, 2, '測試經度')
         sheet.update_cell(row, 3, '測試緯度') 
