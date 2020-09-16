@@ -92,7 +92,7 @@ def handle_message(event):
     if 'test3' in msg:
         message = TextSendMessage(text= '進入test3')
         line_bot_api.reply_message(event.reply_token, message)
-        row = row(str(0))
+        #row = row(str(0))
         message = TextSendMessage(text= '成功找到row')
         line_bot_api.reply_message(event.reply_token, message)
         sheet.update_cell(row, 1, row-1)
