@@ -68,7 +68,9 @@ def callback():
         abort(400)
     return 'OK'
 
-
+#在google sheet的位置
+row = 2
+col = 1
 
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
@@ -77,8 +79,6 @@ def handle_message(event):
 
     msg = event.message.text
     user_id = event.source.user_id
-    row = 2
-    col = 1
 
     if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
