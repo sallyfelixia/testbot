@@ -87,7 +87,7 @@ def handle_message(event):
         sheet.update_cell(row, 1, row-1)
         sheet.update_cell(row, 2, '測試經度')
         sheet.update_cell(row, 3, '測試緯度') 
-        message = TextSendMessage(text= '已寫入('+str(row)+','+str(col)+')')
+        message = TextSendMessage(text= '已寫入'+str(row))
         line_bot_api.reply_message(event.reply_token, message)
     
 
