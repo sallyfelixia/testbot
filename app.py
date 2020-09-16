@@ -85,6 +85,7 @@ def handle_message(event):
         message = TextSendMessage(text= str(sheet.cell(1,2).value))
         line_bot_api.reply_message(event.reply_token, message)
     if 'test3' in msg:
+        _row = global _row
         sheet.update_cell(_row, 1, _row-1)
         sheet.update_cell(_row, 2, '測試1')
         sheet.update_cell(_row, 3, '測試2')
