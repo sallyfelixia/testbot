@@ -87,8 +87,8 @@ def handle_message(event):
     if 'test3' in msg:
         sheet.update_cell(row, col, row-1)
         sheet.update_cell(row, col+1, '測試經度')
-        sheet.update_cell(row, col+2, '測試緯度')
-        message = TextSendMessage(text= '已寫入('+row+','+col+')')
+        sheet.update_cell(row, col+2, '測試緯度') 
+        message = TextSendMessage(text= '已寫入('+str(row)+','+str(col)+')')
         col = col + 3
         row = row + 1
         line_bot_api.reply_message(event.reply_token, message)
