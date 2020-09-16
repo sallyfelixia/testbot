@@ -1,3 +1,5 @@
+_row = 2
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -68,13 +70,6 @@ def callback():
         abort(400)
     return 'OK'
 
-def row(index):
-    try:
-        cell = sheet.find(index)
-        return cell.row
-    except gspread.exceptions.CellNotFound:  # or except gspread.CellNotFound:
-        return 0
-
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 @static_vars(counter=0)
@@ -82,7 +77,6 @@ def handle_message(event):
 
     msg = event.message.text
     user_id = event.source.user_id
-    _row = sheet.find('0').row
     
     if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
@@ -97,6 +91,7 @@ def handle_message(event):
         sheet.update_cell(_row+1, 1, 0) 
         message = TextSendMessage(text= '已寫入'+str(_row))
         line_bot_api.reply_message(event.reply_token, message)
+        _row = _row + 1
     
 
 import os
