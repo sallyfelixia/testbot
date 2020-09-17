@@ -80,18 +80,17 @@ def handle_message(event):
     msg = event.message.text
     user_id = event.source.user_id
     
-    if 'test' in msg:
+    if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
         line_bot_api.reply_message(event.reply_token, message)
     if 'L' in msg:
         seq = sheet_loc.cell(2,5).value
-        message = {
-            type: 'location',
-            title: 'previous location',
-            address: "",
-            latitude: sheet_loc.cell(seq+1, 2).value,
-            longitude: sheet_loc.cell(seq+1, 3).value
-        }
+        message = LocationSendMessage(
+            title='previous location',
+            address='',
+            latitude=sheet_loc.cell(seq+1, 2).value,
+            longitude=sheet_loc.cell(seq+1, 3).value
+        )
         line_bot_api.reply_message(event.reply_token, message)
     if 'test3' in msg:
         global _row
