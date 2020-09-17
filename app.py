@@ -92,6 +92,14 @@ def handle_message(event):
             longitude=sheet_loc.cell(seq+1, 3).value
         )
         line_bot_api.reply_message(event.reply_token, message)
+    if 'test2' in msg:
+        message = LocationSendMessage(
+            title='my location',
+            address='Tokyo',
+            latitude=35.65910807942215,
+            longitude=139.70372892916203
+        )
+        line_bot_api.reply_message(event.reply_token, message)
     if 'test3' in msg:
         global _row
         sheet.update_cell(_row, 1, _row-1)
