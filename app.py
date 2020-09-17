@@ -33,7 +33,8 @@ scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 client = gspread.authorize(creds)
-sheet = client.open("test_1_db").sheet1
+sheet_loc = sheet.get_worksheet(0)
+sheet_cost = sheet.get_worksheet(1)
 
 
 def static_vars(**kwargs):
@@ -78,11 +79,18 @@ def handle_message(event):
     msg = event.message.text
     user_id = event.source.user_id
     
-    if 'test1' in msg:
+    if 'test' in msg:
         message = TextSendMessage(text= 'Hello Sally')
         line_bot_api.reply_message(event.reply_token, message)
-    if 'test2' in msg:
-        message = TextSendMessage(text= str(sheet.cell(1,2).value))
+    if 'L' in msg:
+        seq = sheet_loc.cell(2,5).value
+        message = {
+            type: 'location',
+            title: 'previous location',
+            address: "",
+            latitude: sheet_loc.cell(seq+1, 2).value,
+            longitude: sheet_loc.cell(seq+1, 3).value
+        }
         line_bot_api.reply_message(event.reply_token, message)
     if 'test3' in msg:
         global _row
