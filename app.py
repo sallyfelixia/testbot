@@ -33,6 +33,7 @@ scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 client = gspread.authorize(creds)
+sheet = client.open("test_1_db")
 sheet_loc = sheet.get_worksheet(0)
 sheet_cost = sheet.get_worksheet(1)
 
