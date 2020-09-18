@@ -91,8 +91,8 @@ def handle_message(event):
         message = LocationSendMessage(
             title='previous location',
             address='',
-            latitude=sheet_loc.cell(seq+1, 2).value + 0.00000000000001 * sheet_loc.cell(seq+1, 3).value,
-            longitude=sheet_loc.cell(seq+1, 4).value + 0.00000000000001 * sheet_loc.cell(seq+1, 5).value
+            latitude = int(sheet_loc.cell(seq+1, 2).value) + 0.00000000000001 * int(sheet_loc.cell(seq+1, 3).value),
+            longitude = int(sheet_loc.cell(seq+1, 4).value) + 0.00000000000001 * int(sheet_loc.cell(seq+1, 5).value)
         )
         line_bot_api.reply_message(event.reply_token, message)
     if 'test2' in msg:
