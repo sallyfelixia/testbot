@@ -87,12 +87,14 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
     
     if 'L' in msg:
-        seq = sheet_loc.cell(2,7).value
+        row = int(sheet_loc.cell(2,7).value) + 1
+        sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
+        sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
         message = LocationSendMessage(
             title='previous location',
-            address='loc',
-            latitude = 22.33265834755642,
-            longitude = 120.72125301818213
+            address='上一次拿出卡片的位置',
+            latitude = sim_lat,
+            longitude = sim_lon
         )
         line_bot_api.reply_message(event.reply_token, message)
     if 'test2' in msg:
