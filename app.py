@@ -76,20 +76,23 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 @static_vars(counter=0)
 def handle_message(event):
-
+    
+    num_loc = sheet_loc.cell(2,7).value
+    num_cost = sheet_cost.cell(2,5).value
     msg = event.message.text
     user_id = event.source.user_id
     
     if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
         line_bot_api.reply_message(event.reply_token, message)
+    
     if 'L' in msg:
-        seq = sheet_loc.cell(2,5).value
+        seq = sheet_loc.cell(2,7).value
         message = LocationSendMessage(
             title='previous location',
             address='',
-            latitude=sheet_loc.cell(seq+1, 2).value,
-            longitude=sheet_loc.cell(seq+1, 3).value
+            latitude=sheet_loc.cell(seq+1, 2).value + 0.00000000000001 * sheet_loc.cell(seq+1, 3).value,
+            longitude=sheet_loc.cell(seq+1, 4).value + 0.00000000000001 * sheet_loc.cell(seq+1, 5).value
         )
         line_bot_api.reply_message(event.reply_token, message)
     if 'test2' in msg:
