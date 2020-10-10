@@ -129,11 +129,11 @@ def handle_message(event):
         message = TextSendMessage(text= 'password is set to ' + password)
         line_bot_api.reply_message(event.reply_token, message)
     elif 'turn on signal light' in msg:
-        message = TextSendMessage(text= 'enter "off" to turn off')
+        message = Carousel_Template_off()
         line_bot_api.reply_message(event.reply_token, message)
         sheet_light.update_cell(1, 1, str(1))
     else:
-        message = Carousel_Template()
+        message = Carousel_Template_menu()
         line_bot_api.reply_message(event.reply_token, message)
     
 
