@@ -107,11 +107,10 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     elif 'check cost info' in msg:
-        messsage = ''
+        message = ''
         for i in range(1,7,1):
             message += sheet_cost.cell(i,7)
             message += sheet_cost.cell(i,8)
-            message += '\n'
         line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
         message = TextSendMessage(text= 'light is turned off')
