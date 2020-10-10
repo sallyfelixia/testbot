@@ -88,8 +88,7 @@ def handle_message(event):
     if 'test1' in msg:
         message = TextSendMessage(text= 'Hello Sally')
         line_bot_api.reply_message(event.reply_token, message)
-    
-    if 'L' in msg:
+    elif 'L' in msg:
         row = int(sheet_loc.cell(2,7).value) + 1
         sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
         sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
@@ -100,7 +99,7 @@ def handle_message(event):
             longitude = sim_lon
         )
         line_bot_api.reply_message(event.reply_token, message)
-    if 'test2' in msg:
+    elif 'test2' in msg:
         message = LocationSendMessage(
             title='my location',
             address='',
@@ -108,20 +107,19 @@ def handle_message(event):
             longitude=139.70372892916203
         )
         line_bot_api.reply_message(event.reply_token, message)
-    if 'test3' in msg:
+    elif 'test3' in msg:
         global _row
         sheet.update_cell(_row, 1, _row-1)
         sheet.update_cell(_row, 2, '測試1')
         sheet.update_cell(_row, 3, '測試2') 
         message = TextSendMessage(text= '已寫入'+str(_row))
         line_bot_api.reply_message(event.reply_token, message)
-        _row = _row + 1
-        
-    if 'off' in msg:
+        _row = _row + 1 
+    elif 'off' in msg:
         message = TextSendMessage(text= 'light is turned off')
         line_bot_api.reply_message(event.reply_token, message)
         sheet_light.update_cell(1, 1, str(0))
-    if '旋轉木馬' in msg:
+    else:
         message = Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
     
