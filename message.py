@@ -103,7 +103,7 @@ def Confirm_Template():
 
 #旋轉木馬按鈕訊息介面
 
-def Carousel_Template():
+def Carousel_Template_menu():
     message = TemplateSendMessage(
         alt_text='一則旋轉木馬按鈕訊息',
         template=CarouselTemplate(
