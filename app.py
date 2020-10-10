@@ -85,8 +85,12 @@ def handle_message(event):
     msg = event.message.text
     user_id = event.source.user_id
     
-    if 'check last ID-CARD location' in msg:
-        row = int(sheet_loc.cell(2,7).value) + 1 
+    if 'test1' in msg:
+        message = TextSendMessage(text= 'Hello Sally')
+        line_bot_api.reply_message(event.reply_token, message)
+    
+    if 'L' in msg:
+        row = int(sheet_loc.cell(2,7).value) + 1
         sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
         sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
         message = LocationSendMessage(
@@ -96,110 +100,22 @@ def handle_message(event):
             longitude = sim_lon
         )
         line_bot_api.reply_message(event.reply_token, message)
-    if 'check present wallet location' in msg:
-        sim_lon = int(sheet_wal.cell(2,1).value) + 0.00000000000001 * int(sheet_wal.cell(2,2).value)
-        sim_lat = int(sheet_wal.cell(2,3).value) + 0.00000000000001 * int(sheet_wal.cell(2,4).value)
+    if 'test2' in msg:
         message = LocationSendMessage(
-            title='walltet location',
-            address='錢包的現在位置',
-            latitude = sim_lat,
-            longitude = sim_lon
+            title='my location',
+            address='',
+            latitude=35.65910807942215,
+            longitude=139.70372892916203
         )
         line_bot_api.reply_message(event.reply_token, message)
-    if 'check cost info' in msg:
-        cost = [0, 0, 0, 0, 0, 0]
-        for i in range (2,int(sheet_loc.cell(2,7).value)+3,1)
-            for k in range 6:
-                if int(sheet_loc.cell(i,2).value == k:
-                    cost[k-1] += int(sheet_loc.cell(i,3).value)
-        message =  ('Food : ' + str(cost[0]) + '\n' + 
-                    'Clothing : ' + str(cost[1]) + '\n' + 
-                    'Housing : ' + str(cost[2]) + '\n' + 
-                    'Transportation : ' + str(cost[3]) + '\n' +
-                    'Education : ' + str(cost[4]) + '\n' +
-                    'Entertainment : ' + str(cost[5]))
+    if 'test3' in msg:
+        global _row
+        sheet.update_cell(_row, 1, _row-1)
+        sheet.update_cell(_row, 2, '測試1')
+        sheet.update_cell(_row, 3, '測試2') 
+        message = TextSendMessage(text= '已寫入'+str(_row))
         line_bot_api.reply_message(event.reply_token, message)
-    if 'set wallet password' in msg:
-        message = TextSendMessage(text= 'please enter your "auth" + your 4 digit "new password")
-        line_bot_api.reply_message(event.reply_token, message)
-    if 'auth' in msg:
-        digit = 3
-        password = 0
-        for i in range (4,8,1):
-            password += int(msg[i])*(10**digit)
-            digit -= 1
-        sheet_pass.update_cell(1, 1, str(password))
-    if 'turn on signal light' in msg:
-        message = TextSendMessage(text= 'enter "off" to turn off")
-        line_bot_api.reply_message(event.reply_token, message)
-        sheet_light.update_cell(1, 1, str(1))
-    if 'off' in msg:
-        message = TextSendMessage(text= 'light is turned off")
-        line_bot_api.reply_message(event.reply_token, message)
-        sheet_light.update_cell(1, 1, str(0))
-    else:
-        message = TemplateSendMessage(
-            alt_text='Carousel menu',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/3whWd6A.png',
-                        title='ID-card location',
-                        text='check last ID-CARD location',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to check',
-                                text='check last ID-CARD location'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/Ev4ToWr.png',
-                        title='Wallet location',
-                        text='check present wallet location',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to check',
-                                text='check present wallet location'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/5NqGKmh.png',
-                        title='Cost',
-                        text='check cost info',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to check',
-                                text='check cost info'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/oczX1yI.png',
-                        title='Light',
-                        text='turn on signal light',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to light up',
-                                text='turn on signal light'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/McGA5nL.png',
-                        title='Password setting',
-                        text='set wallet password',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to set',
-                                text='set wallet password'
-                            )
-                        ]
-                    )
-                ], image_aspect_ratio = 'rectangle', image_size = 'cover'
-            )
-        )
+        _row = _row + 1
     
 
 import os
