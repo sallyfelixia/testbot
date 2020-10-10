@@ -111,6 +111,7 @@ def handle_message(event):
         for i in range(1,7,1):
             text += sheet_cost.cell(i,7).value
             text += sheet_cost.cell(i,8).value
+            text += '\n'
             message = TextSendMessage(text)
         line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
