@@ -107,12 +107,15 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     elif 'check cost info' in msg:
+        '''
         text = ''
         for i in range(1,7,1):
             text += sheet_cost.cell(i,7).value
             text += sheet_cost.cell(i,8).value
             text += '\n'
             message = TextSendMessage(text)
+        '''
+        message = Carousel_Template_cost()
         line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
         message = TextSendMessage(text= 'light is turned off')
