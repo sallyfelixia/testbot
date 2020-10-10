@@ -106,14 +106,6 @@ def handle_message(event):
             longitude = sim_lon
         )
         line_bot_api.reply_message(event.reply_token, message)
-    elif 'check cost info' in msg:
-        cost = [0, 0, 0, 0, 0, 0]
-        for i in range (2,int(sheet_cost.cell(2,7).value)+3,1):
-            for k in range(6):
-                if int((sheet_cost.cell(i,2).value) == k:
-                    cost[k-1] += int(sheet_cost.cell(i,3).value)
-        message =  'Food : ' + str(cost[0]) + ' ' + 'Clothing : ' + str(cost[1]) + ' ' + 'Housing : ' + str(cost[2]) + ' ' + 'Transportation : ' + str(cost[3]) + ' ' +  'Education : ' + str(cost[4]) + ' ' + 'Entertainment : ' + str(cost[5])  
-        line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
         message = TextSendMessage(text= 'light is turned off')
         line_bot_api.reply_message(event.reply_token, message)
