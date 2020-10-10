@@ -85,8 +85,26 @@ def handle_message(event):
     msg = event.message.text
     user_id = event.source.user_id
     
-    if 'test1' in msg:
-        message = TextSendMessage(text= 'Hello Sally')
+    if 'check last ID-CARD location' in msg:
+        row = int(sheet_loc.cell(2,7).value) + 1 
+        sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
+        sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
+        message = LocationSendMessage(
+            title='previous location',
+            address='上一次拿出卡片的位置',
+            latitude = sim_lat,
+            longitude = sim_lon
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+    elif 'check present wallet location' in msg:
+        sim_lon = int(sheet_wal.cell(2,1).value) + 0.00000000000001 * int(sheet_wal.cell(2,2).value)
+        sim_lat = int(sheet_wal.cell(2,3).value) + 0.00000000000001 * int(sheet_wal.cell(2,4).value)
+        message = LocationSendMessage(
+            title='walltet location',
+            address='錢包的現在位置',
+            latitude = sim_lat,
+            longitude = sim_lon
+        )
         line_bot_api.reply_message(event.reply_token, message)
     elif 'L' in msg:
         row = int(sheet_loc.cell(2,7).value) + 1
@@ -99,22 +117,6 @@ def handle_message(event):
             longitude = sim_lon
         )
         line_bot_api.reply_message(event.reply_token, message)
-    elif 'test2' in msg:
-        message = LocationSendMessage(
-            title='my location',
-            address='',
-            latitude=35.65910807942215,
-            longitude=139.70372892916203
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'test3' in msg:
-        global _row
-        sheet.update_cell(_row, 1, _row-1)
-        sheet.update_cell(_row, 2, '測試1')
-        sheet.update_cell(_row, 3, '測試2') 
-        message = TextSendMessage(text= '已寫入'+str(_row))
-        line_bot_api.reply_message(event.reply_token, message)
-        _row = _row + 1 
     elif 'off' in msg:
         message = TextSendMessage(text= 'light is turned off')
         line_bot_api.reply_message(event.reply_token, message)
