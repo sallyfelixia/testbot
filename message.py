@@ -168,57 +168,19 @@ def Carousel_Template():
     )
     return message
 
-def Carousel_Template2():
+def Carousel_Template_off():
     message = TemplateSendMessage(
         alt_text='一則旋轉木馬按鈕訊息',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://imgur.com/CHPYx2q.png',
-                    title='Food',
-                    text='check last ID-CARD location'
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://imgur.com/Ev4ToWr.png',
-                    title='Wallet location',
-                    text='check present wallet location',
+                    thumbnail_image_url='https://imgur.com/774QQKE.png',
+                    title='Turn off',
+                    text='turn off the light',
                     actions=[
                         MessageTemplateAction(
-                            label='tap to check',
-                            text='check present wallet location'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://imgur.com/5NqGKmh.png',
-                    title='Cost',
-                    text='check cost info',
-                    actions=[
-                        MessageTemplateAction(
-                            label='tap to check',
-                            text='check cost info'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://imgur.com/oczX1yI.png',
-                    title='Light',
-                    text='turn on signal light',
-                    actions=[
-                        MessageTemplateAction(
-                            label='tap to light up',
-                            text='turn on signal light'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://imgur.com/McGA5nL.png',
-                    title='Password setting',
-                    text='set wallet password',
-                    actions=[
-                        MessageTemplateAction(
-                            label='tap to set',
-                            text='set wallet password'
+                            label='tap to off',
+                            text='off'
                         )
                     ]
                 )
