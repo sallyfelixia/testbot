@@ -3,6 +3,20 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+
+client = gspread.authorize(creds)
+sheet = client.open("test_1_db")
+sheet_loc = sheet.get_worksheet(0)
+sheet_cost = sheet.get_worksheet(1)
+sheet_wal = sheet.get_worksheet(2)
+sheet_light = sheet.get_worksheet(3)
+sheet_pass = sheet.get_worksheet(4)
+
 #ImagemapSendMessage(組圖訊息)
 def imagemap_message():
     message = ImagemapSendMessage(
@@ -181,6 +195,82 @@ def Carousel_Template_off():
                         MessageTemplateAction(
                             label='tap to off',
                             text='off'
+                        )
+                    ]
+                )
+            ], image_aspect_ratio = 'rectangle', image_size = 'cover'
+        )
+    )
+    return message
+
+def Carousel_Template_cost():
+    message = TemplateSendMessage(
+        alt_text='一則旋轉木馬按鈕訊息',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/CHPYx2q.png',
+                    title= '$' + sheet_cost.cell(1,8).value,
+                    text='food cost',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/OUXtBls.png',
+                    title= '$' + sheet_cost.cell(2,8).value,
+                    text='clothing cost',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/oyNcabU.png',
+                    title= '$' + sheet_cost.cell(3,8).value,
+                    text='housing',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/e5oOgav.png',
+                    title= '$' + sheet_cost.cell(4,8).value,
+                    text='transportation',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/iW98jue.png',
+                    title= '$' + sheet_cost.cell(5,8).value,
+                    text='education',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/IcUTcAe.png',
+                    title= '$' + sheet_cost.cell(6,8).value,
+                    text='entertainment',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
                         )
                     ]
                 )
