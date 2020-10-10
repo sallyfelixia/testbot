@@ -118,6 +118,8 @@ def handle_message(event):
         for i in range (4,8,1):
             password += msg[i]
         sheet_pass.update_cell(1, 1, password)
+        message = TextSendMessage(text= 'password is set to' + )
+        line_bot_api.reply_message(event.reply_token, message)
     elif 'turn on signal light' in msg:
         message = TextSendMessage(text= 'enter "off" to turn off')
         line_bot_api.reply_message(event.reply_token, message)
