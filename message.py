@@ -176,8 +176,7 @@ def Carousel_Template2():
                 CarouselColumn(
                     thumbnail_image_url='https://imgur.com/CHPYx2q.png',
                     title='Food',
-                    text='check last ID-CARD location',
-                    actions=[]
+                    text='check last ID-CARD location'
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://imgur.com/Ev4ToWr.png',
