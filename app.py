@@ -133,7 +133,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
         sheet_light.update_cell(1, 1, str(1))
     else:
-        message = Carousel_Template()
+        message = Carousel_Template2()
         line_bot_api.reply_message(event.reply_token, message)
     
 
