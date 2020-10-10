@@ -109,63 +109,61 @@ def Carousel_Template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Number_1_in_green_rounded_square.svg/200px-Number_1_in_green_rounded_square.svg.png',
-                    title='這是第一塊模板',
-                    text='一個模板可以有三個按鈕',
+                    thumbnail_image_url='https://imgur.com/3whWd6A',
+                    title='ID-card location',
+                    text='check last ID-CARD location',
                     actions=[
-                        PostbackTemplateAction(
-                            label='回傳一個訊息',
-                            data='將這個訊息偷偷回傳給機器人'
-                        ),
                         MessageTemplateAction(
-                            label='用戶發送訊息',
-                            text='我知道這是1'
-                        ),
-                        URITemplateAction(
-                            label='進入1的網頁',
-                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Number_1_in_green_rounded_square.svg/200px-Number_1_in_green_rounded_square.svg.png'
+                            label='tap to check',
+                            text='check last ID-CARD location'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuo7n2_HNSFuT3T7Z9PUZmn1SDM6G6-iXfRC3FxdGTj7X1Wr0RzA',
-                    title='這是第二塊模板',
-                    text='副標題可以自己改',
+                    thumbnail_image_url='https://imgur.com/Ev4ToWr.png',
+                    title='Wallet location',
+                    text='check present wallet location ',
                     actions=[
-                        PostbackTemplateAction(
-                            label='回傳一個訊息',
-                            data='這是ID=2'
-                        ),
                         MessageTemplateAction(
-                            label='用戶發送訊息',
-                            text='我知道這是2'
-                        ),
-                        URITemplateAction(
-                            label='進入2的網頁',
-                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Number_2_in_light_blue_rounded_square.svg/200px-Number_2_in_light_blue_rounded_square.svg.png'
+                            label='tap to check',
+                            text='Chedk present wallet location'
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png',
-                    title='這是第三個模塊',
-                    text='最多可以放十個',
+                    thumbnail_image_url='https://imgur.com/5NqGKmh.png',
+                    title='Cost',
+                    text='check your cost info',
                     actions=[
-                        PostbackTemplateAction(
-                            label='回傳一個訊息',
-                            data='這是ID=3'
-                        ),
                         MessageTemplateAction(
-                            label='用戶發送訊息',
-                            text='我知道這是3'
-                        ),
-                        URITemplateAction(
-                            label='uri2',
-                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
+                            label='tap to check',
+                            text='Check cost info'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/oczX1yI.png',
+                    title='Light',
+                    text='turn on signal light',
+                    actions=[
+                        MessageTemplateAction(
+                            label='tap to light up',
+                            text='turn on signal light'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/McGA5nL.png',
+                    title='Password setting',
+                    text='set wallet password',
+                    actions=[
+                        MessageTemplateAction(
+                            label='tap to set',
+                            text='set wallet password'
                         )
                     ]
                 )
-            ]
+            ], image_aspect_ratio = 'rectangle', image_size = 'cover'
         )
     )
     return message
