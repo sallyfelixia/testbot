@@ -116,6 +116,11 @@ def handle_message(event):
         message = TextSendMessage(text= '已寫入'+str(_row))
         line_bot_api.reply_message(event.reply_token, message)
         _row = _row + 1
+        
+    if 'off' in msg:
+        message = TextSendMessage(text= 'light is turned off')
+        line_bot_api.reply_message(event.reply_token, message)
+        sheet_light.update_cell(1, 1, str(0))
     
 
 import os
