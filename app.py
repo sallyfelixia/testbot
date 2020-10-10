@@ -110,6 +110,17 @@ def handle_message(event):
         message = TextSendMessage(text= 'light is turned off')
         line_bot_api.reply_message(event.reply_token, message)
         sheet_light.update_cell(1, 1, str(0))
+    elif 'set wallet password' in msg:
+        message = TextSendMessage(text= 'please enter your "auth" + your 4 digit "new password"')
+        line_bot_api.reply_message(event.reply_token, message)
+    elif 'auth' in msg:
+        for i in range (4,8,1):
+            password += msg[i]
+        sheet_pass.update_cell(1, 1, password)
+    elif 'turn on signal light' in msg:
+        message = TextSendMessage(text= 'enter "off" to turn off')
+        line_bot_api.reply_message(event.reply_token, message)
+        sheet_light.update_cell(1, 1, str(1))
     else:
         message = Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
