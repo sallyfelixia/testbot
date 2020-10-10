@@ -121,69 +121,9 @@ def handle_message(event):
         message = TextSendMessage(text= 'light is turned off')
         line_bot_api.reply_message(event.reply_token, message)
         sheet_light.update_cell(1, 1, str(0))
-    else:
-        message = TemplateSendMessage(
-            alt_text='Carousel menu',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/3whWd6A.png',
-                        title='ID-card location',
-                        text='check last ID-CARD location',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to check',
-                                text='check last ID-CARD location'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/Ev4ToWr.png',
-                        title='Wallet location',
-                        text='check present wallet location',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to check',
-                                text='check present wallet location'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/5NqGKmh.png',
-                        title='Cost',
-                        text='check cost info',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to check',
-                                text='check cost info'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/oczX1yI.png',
-                        title='Light',
-                        text='turn on signal light',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to light up',
-                                text='turn on signal light'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://imgur.com/McGA5nL.png',
-                        title='Password setting',
-                        text='set wallet password',
-                        actions=[
-                            MessageTemplateAction(
-                                label='tap to set',
-                                text='set wallet password'
-                            )
-                        ]
-                    )
-                ], image_aspect_ratio = 'rectangle', image_size = 'cover'
-            )
-        )
+    if '旋轉木馬' in msg:
+        message = Carousel_Template()
+        line_bot_api.reply_message(event.reply_token, message)
     
 
 import os
