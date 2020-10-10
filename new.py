@@ -85,6 +85,11 @@ def handle_message(event):
     msg = event.message.text
     user_id = event.source.user_id
     
+    if 'hello' in msg:
+        message = TextSendMessage(text= 'hello")
+        line_bot_api.reply_message(event.reply_token, message)
+    
+    '''
     if 'check last ID-CARD location' in msg:
         row = int(sheet_loc.cell(2,7).value) + 1 
         sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
@@ -200,7 +205,7 @@ def handle_message(event):
                 ], image_aspect_ratio = 'rectangle', image_size = 'cover'
             )
         )
-    
+    '''
 
 import os
 if __name__ == "__main__":
