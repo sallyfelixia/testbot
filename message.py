@@ -109,7 +109,7 @@ def Carousel_Template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://imgur.com/3whWd6A',
+                    thumbnail_image_url='https://imgur.com/3whWd6A.png',
                     title='ID-card location',
                     text='check last ID-CARD location',
                     actions=[
@@ -122,22 +122,22 @@ def Carousel_Template():
                 CarouselColumn(
                     thumbnail_image_url='https://imgur.com/Ev4ToWr.png',
                     title='Wallet location',
-                    text='check present wallet location ',
+                    text='check present wallet location',
                     actions=[
                         MessageTemplateAction(
                             label='tap to check',
-                            text='Chedk present wallet location'
+                            text='check present wallet location'
                         )
                     ]
                 ),
                 CarouselColumn(
                     thumbnail_image_url='https://imgur.com/5NqGKmh.png',
                     title='Cost',
-                    text='check your cost info',
+                    text='check cost info',
                     actions=[
                         MessageTemplateAction(
                             label='tap to check',
-                            text='Check cost info'
+                            text='check cost info'
                         )
                     ]
                 ),
