@@ -110,13 +110,13 @@ def handle_message(event):
         cost = [0, 0, 0, 0, 0, 0]
         for i in range (2,int(sheet_loc.cell(2,7).value)+3,1):
             for k in range 6:
-                if int((sheet_loc.cell(i,2).value) == k:
-                    cost[k-1] += int(sheet_loc.cell(i,3).value)
-        message =  ('Food : ' + str(cost[0]) + '\n' + 
-                    'Clothing : ' + str(cost[1]) + '\n' + 
-                    'Housing : ' + str(cost[2]) + '\n' + 
-                    'Transportation : ' + str(cost[3]) + '\n' +
-                    'Education : ' + str(cost[4]) + '\n' +
+                if int((sheet_cost.cell(i,2).value) == k:
+                    cost[k-1] += int(sheet_cost.cell(i,3).value)
+        message =  ('Food : ' + str(cost[0]) + ' ' + 
+                    'Clothing : ' + str(cost[1]) + ' ' + 
+                    'Housing : ' + str(cost[2]) + ' ' + 
+                    'Transportation : ' + str(cost[3]) + ' ' +
+                    'Education : ' + str(cost[4]) + ' ' +
                     'Entertainment : ' + str(cost[5]))
         line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
