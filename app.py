@@ -106,6 +106,13 @@ def handle_message(event):
             longitude = sim_lon
         )
         line_bot_api.reply_message(event.reply_token, message)
+    elif 'check cost info' in msg:
+        messsage = ''
+        for i in range(1,7,1):
+            message += sheet_cost.cell(i,7)
+            message += sheet_cost.cell(i,8)
+            message += '\n'
+        line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
         message = TextSendMessage(text= 'light is turned off')
         line_bot_api.reply_message(event.reply_token, message)
@@ -118,7 +125,7 @@ def handle_message(event):
         for i in range (4,8,1):
             password += msg[i]
         sheet_pass.update_cell(1, 1, password)
-        message = TextSendMessage(text= 'password is set to' + password)
+        message = TextSendMessage(text= 'password is set to ' + password)
         line_bot_api.reply_message(event.reply_token, message)
     elif 'turn on signal light' in msg:
         message = TextSendMessage(text= 'enter "off" to turn off')
