@@ -106,16 +106,18 @@ def handle_message(event):
             longitude = sim_lon
         )
         line_bot_api.reply_message(event.reply_token, message)
-    elif 'L' in msg:
-        row = int(sheet_loc.cell(2,7).value) + 1
-        sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
-        sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
-        message = LocationSendMessage(
-            title='previous location',
-            address='上一次拿出卡片的位置',
-            latitude = sim_lat,
-            longitude = sim_lon
-        )
+    elif 'check cost info' in msg:
+        cost = [0, 0, 0, 0, 0, 0]
+        for i in range (2,int(sheet_loc.cell(2,7).value)+3,1)
+            for k in range 6:
+                if int(sheet_loc.cell(i,2).value == k:
+                    cost[k-1] += int(sheet_loc.cell(i,3).value)
+        message =  ('Food : ' + str(cost[0]) + '\n' + 
+                    'Clothing : ' + str(cost[1]) + '\n' + 
+                    'Housing : ' + str(cost[2]) + '\n' + 
+                    'Transportation : ' + str(cost[3]) + '\n' +
+                    'Education : ' + str(cost[4]) + '\n' +
+                    'Entertainment : ' + str(cost[5]))
         line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
         message = TextSendMessage(text= 'light is turned off')
