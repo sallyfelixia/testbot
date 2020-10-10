@@ -114,6 +114,7 @@ def handle_message(event):
         message = TextSendMessage(text= 'please enter your "auth" + your 4 digit "new password"')
         line_bot_api.reply_message(event.reply_token, message)
     elif 'auth' in msg:
+        password = ''
         for i in range (4,8,1):
             password += msg[i]
         sheet_pass.update_cell(1, 1, password)
