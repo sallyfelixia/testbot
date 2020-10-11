@@ -97,8 +97,8 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     elif 'check present wallet location' in msg:
-        sim_lon = int(sheet_wal.cell(2,1).value) + 0.00000000000001 * int(sheet_wal.cell(2,2).value)
-        sim_lat = int(sheet_wal.cell(2,3).value) + 0.00000000000001 * int(sheet_wal.cell(2,4).value)
+        sim_lon = int(sheet_wal.cell(2,2).value) + 0.00000000000001 * int(sheet_wal.cell(2,3).value)
+        sim_lat = int(sheet_wal.cell(2,4).value) + 0.00000000000001 * int(sheet_wal.cell(2,5).value)
         message = LocationSendMessage(
             title='walltet location',
             address='錢包的現在位置',
