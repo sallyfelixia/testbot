@@ -19,6 +19,7 @@ sheet_pass = sheet.get_worksheet(4)
 
 #ImagemapSendMessage(組圖訊息)
 def imagemap_message():
+    
     message = ImagemapSendMessage(
         base_url="https://i.imgur.com/BfTFVDN.jpg",
         alt_text='最新的合作廠商有誰呢？',
@@ -183,6 +184,7 @@ def Carousel_Template_menu():
     return message
 
 def Carousel_Template_off():
+    '''
     message = TemplateSendMessage(
         alt_text='一則旋轉木馬按鈕訊息',
         template=CarouselTemplate(
@@ -200,7 +202,8 @@ def Carousel_Template_off():
                 )
             ], image_aspect_ratio = 'rectangle', image_size = 'cover'
         )
-    )
+    )'''
+    message = AudioSendMessage(original_content_url='https://drive.google.com/file/d/1Gnz6qrvuxD0vKlPz9Pn7P4Jh3GgIKitK/view?usp=sharing', duration=None, quick_reply=None, **kwargs)
     return message
 
 def Carousel_Template_cost():
