@@ -203,7 +203,7 @@ def Carousel_Template_off():
             ], image_aspect_ratio = 'rectangle', image_size = 'cover'
         )
     )'''
-    message = AudioSendMessage(original_content_url='https://drive.google.com/file/d/1Gnz6qrvuxD0vKlPz9Pn7P4Jh3GgIKitK/view?usp=sharing', duration=6000)
+    message = AudioSendMessage(original_content_url='https://drive.google.com/file/d/1Gnz6qrvuxD0vKlPz9Pn7P4Jh3GgIKitK/view?usp=sharing.m4a', duration=6000)
     return message
 
 def Carousel_Template_cost():
