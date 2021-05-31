@@ -75,7 +75,6 @@ def callback():
 @static_vars(counter=0)
 def handle_message(event):
     
-    static int log_in_state = 0
     
     msg = event.message.text
     user_id = event.source.user_id
@@ -83,11 +82,11 @@ def handle_message(event):
     if '開始註冊' in msg:
         message = TextSendMessage(text= str(user_id))
         line_bot_api.reply_message(event.reply_token, message)
-        log_in_state = 1
+        '''
     elif log_in_state == 1:
         name = msg
         message = TextSendMessage(text= 'hello')
-        '''
+        
         message = TemplateSendMessage(
             alt_text='姓名確認',
             template=ConfirmTemplate(
@@ -103,7 +102,7 @@ def handle_message(event):
                     )
                 ]
             )
-        )'''
+        )
         line_bot_api.reply_message(event.reply_token, message)
         log_in_state = 2
     #elif log_in_state == 2:
@@ -111,7 +110,7 @@ def handle_message(event):
         
     
     
-    '''
+    
     if 'check last ID-CARD location' in msg:
         row = int(sheet_loc.cell(2,7).value) + 1 
         
