@@ -81,14 +81,12 @@ def handle_message(event):
     registered = False
     no = 0
 
-    '''
     #check registration state
-    for i in range(1,99):
-        if sheet_id.cell(i,1).value == user_id:
-            no = i
-            registered = True
-            break
-    '''
+    if total_num != 0:
+        for i in range(1,total_num):
+            if sheet_id.cell(i,1).value == user_id:
+                no = i
+                registered = True
 
     if not registered:
         no = total_num + 1
