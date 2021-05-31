@@ -87,6 +87,8 @@ def handle_message(event):
             log_in_state = 1
     elif log_in_state == 1:
         name = msg
+        message = TextSendMessage(text= 'hello')
+        '''
         message = TemplateSendMessage(
             alt_text='姓名確認',
             template=ConfirmTemplate(
@@ -102,7 +104,7 @@ def handle_message(event):
                     )
                 ]
             )
-        )
+        )'''
         line_bot_api.reply_message(event.reply_token, message)
         log_in_state = 2
     #elif log_in_state == 2:
