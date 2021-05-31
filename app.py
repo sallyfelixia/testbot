@@ -84,7 +84,7 @@ def handle_message(event):
         if sheet_id.cell(i,1).value == user_id:
             no = i
         else:
-            sheet_id.update_cell(no, 1, user_id)
+            sheet_id.update_cell(total_num + 1, 1, user_id)
             sheet_id.update_cell(100, 1, str(no)) 
     '''
     #check registration state
