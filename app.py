@@ -79,14 +79,14 @@ def handle_message(event):
     user_id = event.source.user_id
     total_num = int(sheet_id.cell(100,1).value)
     registered = False
-
+    '''
      for i in range(1,99):
         if sheet_id.cell(i,1).value == user_id:
             no = i
         else:
             sheet_id.update_cell(total_num + 1, 1, user_id)
             sheet_id.update_cell(100, 1, str(no)) 
-    '''
+    
     #check registration state
     for i in range(1,99):
         if sheet_id.cell(i,1).value == user_id:
@@ -102,6 +102,8 @@ def handle_message(event):
     if '開始註冊' in msg:
         message = TextSendMessage(text= user_id)
         line_bot_api.reply_message(event.reply_token, message)
+        sheet_id.update_cell(1, 1, user_id)
+        #sheet_id.update_cell(100, 1, str(no))
         '''
     elif log_in_state == 1:
         name = msg
