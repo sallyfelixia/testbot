@@ -87,7 +87,7 @@ def handle_message(event):
             no = i
             registered = True
             break
-    if not registerd:
+    if not registered:
         no = total_num + 1
         sheet_id.update_cell(no, 1, user_id)
         sheet_id.update_cell(100, 1, str(no))
