@@ -80,6 +80,7 @@ def handle_message(event):
     total_num = int(sheet_id.cell(100,1).value)
     registered = False
     no = 0
+    login_state = ''
 
     #check registration state
     if total_num != 0:
@@ -91,12 +92,17 @@ def handle_message(event):
     if not registered:
         no = total_num + 1
         sheet_id.update_cell(no, 1, user_id)
+        sheet_id.update_cell(no, 2, str(0))
         sheet_id.update_cell(100, 1, str(no))
         registered = True
+
+    login_state = int(sheet_id.cell(no,2).value)
+    # 0:id reg / 1:class reg / 2:num reg / 3:name
                 
-    if '開始註冊' in msg:
-        message = TextSendMessage(text= user_id)
+    if login_state == 0:
+        message = TextSendMessage(text= '請選擇班級')
         line_bot_api.reply_message(event.reply_token, message)
+
         '''
     elif log_in_state == 1:
         name = msg
