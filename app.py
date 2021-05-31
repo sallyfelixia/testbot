@@ -1,5 +1,3 @@
-log_in_state = 0
-name = ''
 
 from flask import Flask, request, abort
 
@@ -77,7 +75,7 @@ def callback():
 @static_vars(counter=0)
 def handle_message(event):
     
-    log_in_state = 0
+    static int log_in_state = 0
     
     msg = event.message.text
     user_id = event.source.user_id
