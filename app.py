@@ -77,14 +77,16 @@ def callback():
 @static_vars(counter=0)
 def handle_message(event):
     
+    log_in_state = 0
+    
     msg = event.message.text
     user_id = event.source.user_id
     
-    #if log_in_state == 0:  
-    if '開始註冊' in msg:
-        message = TextSendMessage(text= '請輸入姓名')
-        line_bot_api.reply_message(event.reply_token, message)
-        log_in_state = 1
+    if log_in_state == 0:  
+        if '開始註冊' in msg:
+            message = TextSendMessage(text= '請輸入姓名')
+            line_bot_api.reply_message(event.reply_token, message)
+            log_in_state = 1
     elif log_in_state == 1:
         name = msg
         message = TemplateSendMessage(
