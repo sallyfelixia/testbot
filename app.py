@@ -1,4 +1,5 @@
-_row = 2
+log_in_state = 0
+name = ''
 
 from flask import Flask, request, abort
 
@@ -33,12 +34,10 @@ scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 client = gspread.authorize(creds)
-sheet = client.open("test_1_db")
-sheet_loc = sheet.get_worksheet(0)
-sheet_cost = sheet.get_worksheet(1)
-sheet_wal = sheet.get_worksheet(2)
-sheet_light = sheet.get_worksheet(3)
-sheet_pass = sheet.get_worksheet(4)
+sheet = client.open("English_test")
+sheet_problem = sheet.get_worksheet(0)
+sheet_option = sheet.get_worksheet(1)
+sheet_501 = sheet.get_worksheet(2)
 
 
 def static_vars(**kwargs):
@@ -47,8 +46,6 @@ def static_vars(**kwargs):
             setattr(func, k, kwargs[k])
         return func
     return decorate
-
-
 
 
 app = Flask(__name__)
@@ -80,17 +77,47 @@ def callback():
 @static_vars(counter=0)
 def handle_message(event):
     
-    num_loc = sheet_loc.cell(2,7).value
-    num_cost = sheet_cost.cell(2,5).value
     msg = event.message.text
     user_id = event.source.user_id
     
+    if log_in_state == 0:  
+        if '開始註冊' in msg:
+            message = TextSendMessage(text= '請輸入姓名')
+            line_bot_api.reply_message(event.reply_token, message)
+            log_in = true
+            log_in_state = 1
+    elif log_in_state == 1:
+        name = msg
+        message = TemplateSendMessage(
+            alt_text='姓名確認',
+            template=ConfirmTemplate(
+                text='請確認 你是' + name + '嗎',
+                actions=[
+                    PostbackTemplateAction(
+                        label="是的",
+                        text="開始測驗",
+                    ),
+                    MessageTemplateAction(
+                        label="重新輸入",
+                        text="開始註冊"
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+        log_in_state = 2
+    #elif log_in_state == 2:
+        
+        
+    
+    
+    '''
     if 'check last ID-CARD location' in msg:
         row = int(sheet_loc.cell(2,7).value) + 1 
-        '''
+        
         sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
         sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
-        '''
+        
         sim_lon = int(sheet_loc.cell(100,2).value) + 0.00000000000001 * int(sheet_loc.cell(100,3).value)
         sim_lat = int(sheet_loc.cell(100,4).value) + 0.00000000000001 * int(sheet_loc.cell(100,5).value)
         message = LocationSendMessage(
@@ -101,10 +128,10 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     elif 'check present wallet location' in msg:
-        '''
+        
         sim_lon = int(sheet_wal.cell(2,2).value) + 0.00000000000001 * int(sheet_wal.cell(2,3).value)
         sim_lat = int(sheet_wal.cell(2,4).value) + 0.00000000000001 * int(sheet_wal.cell(2,5).value)
-        '''
+        
         sim_lon = int(sheet_wal.cell(100,2).value) + 0.00000000000001 * int(sheet_wal.cell(100,3).value)
         sim_lat = int(sheet_wal.cell(100,4).value) + 0.00000000000001 * int(sheet_wal.cell(100,5).value)
         message = LocationSendMessage(
@@ -115,14 +142,14 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     elif 'check cost info' in msg:
-        '''
+        
         text = ''
         for i in range(1,7,1):
             text += sheet_cost.cell(i,7).value
             text += sheet_cost.cell(i,8).value
             text += '\n'
             message = TextSendMessage(text)
-        '''
+        
         message = Carousel_Template_cost()
         line_bot_api.reply_message(event.reply_token, message)
     elif 'off' in msg:
@@ -146,6 +173,8 @@ def handle_message(event):
     else:
         message = Carousel_Template_menu()
         line_bot_api.reply_message(event.reply_token, message)
+        
+        '''
     
 
 import os
