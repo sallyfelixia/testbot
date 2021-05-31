@@ -83,7 +83,7 @@ def handle_message(event):
 
     #check registration state
     if total_num != 0:
-        for i in range(1,total_num):
+        for i in range(1,total_num + 1):
             if sheet_id.cell(i,1).value == user_id:
                 no = i
                 registered = True
