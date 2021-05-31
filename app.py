@@ -35,8 +35,7 @@ client = gspread.authorize(creds)
 sheet = client.open("English_test")
 sheet_problem = sheet.get_worksheet(0)
 sheet_option = sheet.get_worksheet(1)
-sheet_501 = sheet.get_worksheet(2)
-
+sheet_id = sheet.get_worksheet(2)
 
 def static_vars(**kwargs):
     def decorate(func):
@@ -75,12 +74,19 @@ def callback():
 @static_vars(counter=0)
 def handle_message(event):
     
-    
+
     msg = event.message.text
     user_id = event.source.user_id
+    total_num = int(sheet_id.cell(100,1).value)
+    for i in range(1,99):
+            if sheet_id.cell(i,1).value == user_id:
+                no = i
+            else:
+                no = total_num + 1
+                sheet_id.update_cell(no, 1, user_id)
     
     if '開始註冊' in msg:
-        message = TextSendMessage(text= str(user_id))
+        message = TextSendMessage(text= user_id)
         line_bot_api.reply_message(event.reply_token, message)
         '''
     elif log_in_state == 1:
