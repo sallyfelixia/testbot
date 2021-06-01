@@ -120,6 +120,9 @@ def handle_message(event):
                     name_exist = True
                     
         if name_exist:
+            sheet_id.update_cell(no, 3, _class)
+            sheet_id.update_cell(no, 4, seatnum)
+            sheet_id.update_cell(no, 5, name)
             message = TemplateSendMessage(
                 alt_text='確認班級座號姓名？',
                 template=ConfirmTemplate(
