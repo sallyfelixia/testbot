@@ -134,7 +134,7 @@ def handle_message(event):
                     actions=[
                         PostbackTemplateAction(
                             label="確認",
-                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字 如果沒有影片、題目出現時 請輸入# 重新載入題目",
+                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字 如果沒有影片出現時 請輸入#重新載入題目 並注意重複作答系統將不予計分",
                             data="會員註冊"
                         ),
                         MessageTemplateAction(
@@ -171,7 +171,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#1' in msg:
+    if '#1' in msg or (sheet_id.cell(no,7).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,7).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -195,7 +195,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#2' in msg:
+    if '#2' in msg or (sheet_id.cell(no,8).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,8).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -219,7 +219,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     
-    if '#3' in msg:
+    if '#3' in msg or (sheet_id.cell(no,9).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,9).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -243,7 +243,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#4' in msg:
+    if '#4' in msg or (sheet_id.cell(no,10).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,10).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -267,7 +267,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#5' in msg:
+    if '#5' in msg or (sheet_id.cell(no,11).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,11).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -291,7 +291,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#6' in msg:
+    if '#6' in msg or (sheet_id.cell(no,12).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,12).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -315,7 +315,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#7' in msg:
+    if '#7' in msg or (sheet_id.cell(no,13).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,13).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -339,7 +339,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#8' in msg:
+    if '#8' in msg or (sheet_id.cell(no,14).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,14).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -363,7 +363,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '#9' in msg:
+    if '#9' in msg or (sheet_id.cell(no,15).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,15).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -389,7 +389,7 @@ def handle_message(event):
 
 
     
-    if '# 10' in msg:
+    if '# 10' in msg or (sheet_id.cell(no,16).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,16).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -419,7 +419,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
     
     
-    if '# 11' in msg:
+    if '# 11' in msg or (sheet_id.cell(no,17).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,17).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -448,7 +448,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 12' in msg:
+    if '# 12' in msg or (sheet_id.cell(no,18).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,18).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -477,7 +477,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 13' in msg:
+    if '# 13' in msg or (sheet_id.cell(no,19).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,19).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -506,7 +506,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 14' in msg:
+    if '# 14' in msg or (sheet_id.cell(no,20).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,20).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -535,7 +535,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     
-    if '# 15' in msg:
+    if '# 15' in msg or (sheet_id.cell(no,21).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,21).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -564,7 +564,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 16' in msg:
+    if '# 16' in msg or (sheet_id.cell(no,22).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,22).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -572,7 +572,7 @@ def handle_message(event):
         message = TemplateSendMessage(
             alt_text = 'Problem 17',
             template=ButtonsTemplate(
-                thumbnail_image_url = 'https://imgur.com/undefined.png',
+                thumbnail_image_url = 'https://imgur.com/Y1vvXux.png',
                 title = "選擇填入空格的詞句",
                 text = "A: Does Amy read books after school? B: Yes, _____ _____. ",
                 actions=[
@@ -593,7 +593,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 17' in msg:
+    if '# 17' in msg or (sheet_id.cell(no,23).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,23).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -622,7 +622,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 18' in msg:
+    if '# 18' in msg or (sheet_id.cell(no,24).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,24).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -651,7 +651,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 19' in msg:
+    if '# 19' in msg or (sheet_id.cell(no,25).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,25).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
@@ -680,43 +680,29 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '# 20' in msg:
+    if '# 20' in msg or (sheet_id.cell(no,26).value == '0' and '#' in msg):
         if 'good job!' in msg and sheet_id.cell(no,26).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
         sheet_id.update_cell(no, 26, '1')
-        if int(sheet_id.cell(no,6).value) <= 100:
-            message = TemplateSendMessage(
-                alt_text = 'finished!',
-                template=ButtonsTemplate(
-                    thumbnail_image_url = 'https://imgur.com/k1jt05e.png',
-                    title = "作答完成",
-                    text = "你的分數" + sheet_id.cell(no,6).value,
-                    actions=[
-                        MessageTemplateAction(
-                            label = "我知道了!",
-                            text = "完成作答"
-                        )
-                    ]
-                )
+        message = TemplateSendMessage(
+            alt_text = 'finished!',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/k1jt05e.png',
+                title = "作答完成",
+                text = "你的分數" + sheet_id.cell(no,6).value,
+                actions=[
+                    MessageTemplateAction(
+                        label = "我知道了!",
+                        text = "完成作答"
+                    )
+                ]
             )
-            line_bot_api.reply_message(event.reply_token, message)
-        else:
-            message = TemplateSendMessage(
-                alt_text = 'error!',
-                template=ButtonsTemplate(
-                    thumbnail_image_url = 'https://imgur.com/ZBnMXWf.png',
-                    title = "作答有誤",
-                    text = "你的分數超過100分 有重複作答 下次請注意!",
-                    actions=[
-                        MessageTemplateAction(
-                            label = "我知道了!",
-                            text = "完成作答"
-                        )
-                    ]
-                )
-            )
-            line_bot_api.reply_message(event.reply_token, message)
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+       
+    if '#' in msg:
+        for i in 
 
     
 
