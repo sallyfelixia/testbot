@@ -10,14 +10,42 @@ scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 client = gspread.authorize(creds)
-sheet = client.open("test_1_db")
-sheet_loc = sheet.get_worksheet(0)
-sheet_cost = sheet.get_worksheet(1)
-sheet_wal = sheet.get_worksheet(2)
-sheet_light = sheet.get_worksheet(3)
-sheet_pass = sheet.get_worksheet(4)
+sheet = client.open("English_test")
+sheet_problem = sheet.get_worksheet(0)
+sheet_option = sheet.get_worksheet(1)
+sheet_id = sheet.get_worksheet(2)
+sheet_name = sheet.get_worksheet(3)
+
 
 #ImagemapSendMessage(組圖訊息)
+def listening_problem(num):
+    video_url = sheet_problem.cell(num,1).value + '.mp4'
+    picture_url = sheet_problem.cell(num,2).value + '.png'
+    probelm_tag = sheet_problem.cell(num,6).value
+    option_1 = sheet_problem.cell(num,3).value
+    option_2 = sheet_problem.cell(num,4).value
+    option_3 = sheet_problem.cell(num,5).value
+    answer = sheet_problem.cell(num,7).value
+
+    message = VideoSendMessage(
+                original_content_url = video_url, 
+                preview_image_url = picture_url,
+                quick_reply = QuickReply(
+                    items = [
+                        QuickReplyButton(
+                            action = MessageAction(label = option_1, text = probelm_tag + ' your ans:' + option_1 + '\ncorrect answer:' + answer)
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label = option_2, text = probelm_tag + ' your ans:' + option_2 + '\ncorrect answer:' + answer)
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label = option_3, text = text = probelm_tag + ' your ans:' + option_3 + '\ncorrect answer:' + answer)
+                        ),  
+                    ]
+                )
+            )
+    return message
+
 def imagemap_message():
     message = ImagemapSendMessage(
         base_url="https://i.imgur.com/BfTFVDN.jpg",
