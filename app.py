@@ -351,6 +351,8 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
+
+    '''
     if '# 10' in msg:
         message = TemplateSendMessage(
             alt_text = 'Problem 11',
@@ -375,8 +377,9 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, message)
+    '''
 
-    if '# 11' in msg:
+    if '# 10' in msg:
         message = TemplateSendMessage(
             alt_text = 'Problem 12',
             template=ButtonsTemplate(
