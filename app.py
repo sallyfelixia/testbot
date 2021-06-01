@@ -148,7 +148,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
             
     if 'good job!' in msg:
-        score = str(int(sheet_id.cell(no,6).value) + 10)
+        score = str(int(sheet_id.cell(no,6).value) + 5)
         sheet_id.update_cell(no, 6, score)
 
     if '確認資料' in msg:
@@ -352,14 +352,14 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
 
-    '''
+    
     if '# 10' in msg:
         message = TemplateSendMessage(
             alt_text = 'Problem 11',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/E4wtVGJ.png',
-                title = "I ____ do homework after school.",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "I ____ do homework after school.",
                 actions=[
                     MessageTemplateAction(
                         label = 'like',
@@ -377,15 +377,15 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, message)
-    '''
-
-    if '# 10' in msg:
+    
+    
+    if '# 11' in msg:
         message = TemplateSendMessage(
             alt_text = 'Problem 12',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/Rp9LKBa.png',
-                title = "Jack usually ________ the dog in the morning. ",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "Jack usually ___ the dog in the morning.",
                 actions=[
                     MessageTemplateAction(
                         label = 'play the piano',
@@ -409,8 +409,8 @@ def handle_message(event):
             alt_text = 'Problem 13',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/vriIBqw.png',
-                title = "Mom and I sometimes _____________ the internet at home.",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "Mom and I sometimes _____ the internet at home.",
                 actions=[
                     MessageTemplateAction(
                         label = 'browse',
@@ -434,8 +434,8 @@ def handle_message(event):
             alt_text = 'Problem 14',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/2ktphE6.png',
-                title = "______ you usually play sports in after work?",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "______ you usually play sports in after work?",
                 actions=[
                     MessageTemplateAction(
                         label = 'Do',
@@ -459,8 +459,8 @@ def handle_message(event):
             alt_text = 'Problem 15',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/NSYMEMS.png',
-                title = "________ Lily ________ homework after school?",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "________ Lily ________ homework after school?",
                 actions=[
                     MessageTemplateAction(
                         label = 'Do does',
@@ -484,8 +484,8 @@ def handle_message(event):
             alt_text = 'Problem 16',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/9ksK0is.png',
-                title = "_______ does your brother do after scool?",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "_______ does your brother do after scool?",
                 actions=[
                     MessageTemplateAction(
                         label = 'When',
@@ -509,8 +509,8 @@ def handle_message(event):
             alt_text = 'Problem 17',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/undefined.png',
-                title = "A: Does Amy read books after school? B: Yes, _____ _____. ",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "A: Does Amy read books after school? B: Yes, _____ _____. ",
                 actions=[
                     MessageTemplateAction(
                         label = 'she does',
@@ -534,8 +534,8 @@ def handle_message(event):
             alt_text = 'Problem 18',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/SJoGeQT.png',
-                title = "A: What do you do in the morning? B:_______ listen to music.",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "A: What do you do in the morning? B:_______ listen to music.",
                 actions=[
                     MessageTemplateAction(
                         label = 'You',
@@ -559,8 +559,8 @@ def handle_message(event):
             alt_text = 'Problem 19',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/JQZd2b9.png',
-                title = "Do you ________ walk the dog in the park?",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "Do you ________ walk the dog in the park?",
                 actions=[
                     MessageTemplateAction(
                         label = 'want',
@@ -584,8 +584,8 @@ def handle_message(event):
             alt_text = 'Problem 20',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/goWtiMu.png',
-                title = "I ______ usually watch TV after school.",
-                text = "選擇填入空格的詞句",
+                title = "選擇填入空格的詞句",
+                text = "I ______ usually watch TV after school.",
                 actions=[
                     MessageTemplateAction(
                         label = "don't",
@@ -603,103 +603,41 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, message)
-    
 
-        '''
-        message = TemplateSendMessage(
-            alt_text = 'Problem 1', 
-            template = ButtonTemplate(
-                thumbnail_image_url = 'https://imgur.com/2CJYX6c.png',
-                title = 'I ____ do homework after school.',
-                text = '選擇填入空格的詞句',
-                actions = [
-                    MessageTemplateAction(
-                        title = 'like',
-                        text = '#11 ans : like'
-                    ),
-                    MessageTemplateAction(
-                        title = 'usually',
-                        text = '#11 ans : usually'
-                    ),
-                    MessageTemplateAction(
-                        title = 'have',
-                        text = '#11 ans : have'
-                    ),
-                ]
+    if '# 20' in msg:
+        if int(sheet_id.cell(no,6).value) <= 100:
+            message = TemplateSendMessage(
+                alt_text = 'finished!',
+                template=ButtonsTemplate(
+                    thumbnail_image_url = 'https://imgur.com/k1jt05e.png',
+                    title = "作答完成",
+                    text = "你的分數" + sheet_id.cell(no,6).value
+                    actions=[
+                        MessageTemplateAction(
+                            label = "我知道了!",
+                            text = "完成作答"
+                        )
+                    ]
+                )
             )
-        )
-        '''
-        
+            line_bot_api.reply_message(event.reply_token, message)
+        else:
+            message = TemplateSendMessage(
+                alt_text = 'error!',
+                template=ButtonsTemplate(
+                    thumbnail_image_url = 'https://imgur.com/ZBnMXWf.png',
+                    title = "作答有誤",
+                    text = "你的分數超過100分 有重複作答 下次請注意!"
+                    actions=[
+                        MessageTemplateAction(
+                            label = "我知道了!",
+                            text = "完成作答"
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, message)
 
-    
-        
-        
-    
-    
-    '''
-    if 'check last ID-CARD location' in msg:
-        row = int(sheet_loc.cell(2,7).value) + 1 
-        
-        sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
-        sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
-        
-        sim_lon = int(sheet_loc.cell(100,2).value) + 0.00000000000001 * int(sheet_loc.cell(100,3).value)
-        sim_lat = int(sheet_loc.cell(100,4).value) + 0.00000000000001 * int(sheet_loc.cell(100,5).value)
-        message = LocationSendMessage(
-            title='previous location',
-            address='上一次拿出卡片的位置',
-            latitude = sim_lat,
-            longitude = sim_lon
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'check present wallet location' in msg:
-        
-        sim_lon = int(sheet_wal.cell(2,2).value) + 0.00000000000001 * int(sheet_wal.cell(2,3).value)
-        sim_lat = int(sheet_wal.cell(2,4).value) + 0.00000000000001 * int(sheet_wal.cell(2,5).value)
-        
-        sim_lon = int(sheet_wal.cell(100,2).value) + 0.00000000000001 * int(sheet_wal.cell(100,3).value)
-        sim_lat = int(sheet_wal.cell(100,4).value) + 0.00000000000001 * int(sheet_wal.cell(100,5).value)
-        message = LocationSendMessage(
-            title='walltet location',
-            address='錢包的現在位置',
-            latitude = sim_lat,
-            longitude = sim_lon
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'check cost info' in msg:
-        
-        text = ''
-        for i in range(1,7,1):
-            text += sheet_cost.cell(i,7).value
-            text += sheet_cost.cell(i,8).value
-            text += '\n'
-            message = TextSendMessage(text)
-        
-        message = Carousel_Template_cost()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'off' in msg:
-        message = TextSendMessage(text= 'light is turned off')
-        line_bot_api.reply_message(event.reply_token, message)
-        sheet_light.update_cell(1, 1, str(0))
-    elif 'set wallet password' in msg:
-        message = TextSendMessage(text= 'please enter your "auth" + your 4 digit "new password"')
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'auth' in msg:
-        password = ''
-        for i in range (4,8,1):
-            password += msg[i]
-        sheet_pass.update_cell(1, 1, password)
-        message = TextSendMessage(text= 'password is set to ' + password)
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'turn on signal light' in msg:
-        message = Carousel_Template_off()
-        line_bot_api.reply_message(event.reply_token, message)
-        sheet_light.update_cell(1, 1, str(1))
-    else:
-        message = Carousel_Template_menu()
-        line_bot_api.reply_message(event.reply_token, message)
-        
-        '''
     
 
 import os
