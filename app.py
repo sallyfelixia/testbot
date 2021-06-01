@@ -146,11 +146,12 @@ def handle_message(event):
             message = TextSendMessage(text= '查無此人 請重新輸入')
             line_bot_api.reply_message(event.reply_token, message)
 
+'''
     if '確認資料' in msg:
         message = listening_problem(1)
         line_bot_api.reply_message(event.reply_token, message)
-
-    '''        
+        '''
+      
     if '確認資料' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/bkm2cPn.mp4', 
@@ -261,7 +262,7 @@ def handle_message(event):
         )
         
         line_bot_api.reply_message(event.reply_token, message)
-        '''
+        
 
     
         
