@@ -102,7 +102,7 @@ def handle_message(event):
                 
     if login_state == 0 or '重新填寫' in msg:
         sheet_id.update_cell(no, 2, str(1))
-        message = TextSendMessage(text= '請輸入姓名\n此步驟耗時較長 請稍候')
+        message = TextSendMessage(text= '請輸入姓名\n此步驟耗時較長 請稍候\n若超過1分鐘沒有回應請再次輸入')
         line_bot_api.reply_message(event.reply_token, message)
 
     if login_state == 1:
@@ -135,7 +135,7 @@ def handle_message(event):
                     actions=[
                         PostbackTemplateAction(
                             label="確認",
-                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字 如果沒有影片出現時 請輸入@重新載入題目 並注意重複作答系統不予計分",
+                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字 若超過30秒沒有出現題目 請輸入@重新載入題目 並注意重複作答系統不予計分",
                             data="會員註冊"
                         ),
                         MessageTemplateAction(
@@ -176,7 +176,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,7).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 7, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 7, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/FDujC2X.mp4', 
             preview_image_url='https://imgur.com/4ARs5aO.png',
@@ -200,7 +201,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,8).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 8, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 8, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/0v0MtpW.mp4', 
             preview_image_url='https://imgur.com/hZHDi6D.png',
@@ -224,7 +226,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,9).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 9, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 9, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/Bp8x0Ll.mp4', 
             preview_image_url='https://imgur.com/t7keRVy.png',
@@ -248,7 +251,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,10).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 10, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 10, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/mITn8uT.mp4', 
             preview_image_url='https://imgur.com/st821yg.png',
@@ -272,7 +276,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,11).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 11, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 11, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/cRpfUGP.mp4', 
             preview_image_url='https://imgur.com/tOUdChN.png',
@@ -296,7 +301,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,12).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 12, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 12, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/RdhTRe4.mp4', 
             preview_image_url='https://imgur.com/7ezNT5R.png',
@@ -320,7 +326,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,13).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 13, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 13, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/LDIemg1.mp4', 
             preview_image_url='https://imgur.com/BgRCXLX.png',
@@ -344,7 +351,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,14).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 14, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 14, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/lVxpNDp.mp4', 
             preview_image_url='https://imgur.com/fdgthsL.png',
@@ -368,7 +376,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,15).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 15, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 15, '1')
         message = VideoSendMessage(
             original_content_url='https://imgur.com/nRqfbNB.mp4', 
             preview_image_url='https://imgur.com/qRmhPT1.png',
@@ -394,7 +403,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,16).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 16, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 16, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 11',
             template=ButtonsTemplate(
@@ -424,7 +434,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,17).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 17, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 17, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 12',
             template=ButtonsTemplate(
@@ -453,7 +464,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,18).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 18, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 18, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 13',
             template=ButtonsTemplate(
@@ -482,7 +494,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,19).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 19, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 19, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 14',
             template=ButtonsTemplate(
@@ -511,7 +524,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,20).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 20, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 20, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 15',
             template=ButtonsTemplate(
@@ -540,7 +554,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,21).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 21, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 21, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 16',
             template=ButtonsTemplate(
@@ -569,7 +584,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,22).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 22, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 22, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 17',
             template=ButtonsTemplate(
@@ -598,6 +614,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,23).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 23, '1')
         sheet_id.update_cell(no, 23, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 18',
@@ -627,7 +645,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,24).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 24, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 24, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 19',
             template=ButtonsTemplate(
@@ -656,7 +675,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,25).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 25, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 25, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 20',
             template=ButtonsTemplate(
@@ -685,7 +705,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,26).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 26, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 26, '1')
         message = TemplateSendMessage(
             alt_text = 'finished!',
             template=ButtonsTemplate(
