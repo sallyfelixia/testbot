@@ -36,7 +36,6 @@ sheet = client.open("English_test")
 sheet_problem = sheet.get_worksheet(0)
 sheet_option = sheet.get_worksheet(1)
 sheet_id = sheet.get_worksheet(2)
-sheet_name = sheet.get_worksheet(3)
 
 def static_vars(**kwargs):
     def decorate(func):
@@ -81,7 +80,7 @@ def handle_message(event):
     total_num = int(sheet_id.cell(100,1).value)
     registered = False
     no = 0
-    login_state = 0
+    login_state = ''
 
     #check registration state
     if total_num != 0:
@@ -98,50 +97,12 @@ def handle_message(event):
         registered = True
 
     login_state = int(sheet_id.cell(no,2).value)
-    # 0:id reg / 1:name in / 2:name confirm / 3:start /
+    # 0:id reg / 1:class reg / 2:num reg / 3:name
                 
     if login_state == 0:
         message = TextSendMessage(text= '請輸入姓名')
         line_bot_api.reply_message(event.reply_token, message)
-        sheet_id.update_cell(no, 2, str(1))
-    
-    '''
-    if login_state == 1:
-        student_num = int(sheet_name.cell(1,1).value)
-        name = msg
-        seatnum = ''
-        _class = ''
-        name_exist = False
 
-        for i in range (1,student_num+1):
-            if sheet_name.cell(i,1).value == msg:
-                seatnum = sheet_name.cell(i,3).value
-                _class = sheet_name.cell(i,2).value
-                name_exist = True
-        
-        if name_exist:
-            message = TemplateSendMessage(
-                alt_text='姓名確認',
-                template=ConfirmTemplate(
-                    text= ('請確認 你是' + _class _ + seatnum + '號' + name + '嗎'),
-                    actions=[
-                        PostbackTemplateAction(
-                            label="是的",
-                            text="開始測驗"
-                        ),
-                        PostbackTemplateAction(
-                            label="重新輸入",
-                            text="重新輸入"
-                        )
-                    ]
-                )
-            )
-            line_bot_api.reply_message(event.reply_token, message)
-        else:
-            message = TextSendMessage(text= '查無此人 請重新輸入姓名')
-            line_bot_api.reply_message(event.reply_token, message)
-        
-        '''
         '''
     elif log_in_state == 1:
         name = msg
