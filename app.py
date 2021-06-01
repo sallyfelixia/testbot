@@ -104,7 +104,7 @@ def handle_message(event):
         message = TextSendMessage(text= '請輸入姓名')
         line_bot_api.reply_message(event.reply_token, message)
         login_state = 1
-
+    '''
     if login_state == 1:
         student_num = int(sheet_name.cell(1,1).value)
         name = msg
@@ -140,6 +140,7 @@ def handle_message(event):
             message = TextSendMessage(text= '查無此人 請重新輸入姓名')
             line_bot_api.reply_message(event.reply_token, message)
         
+        '''
         '''
     elif log_in_state == 1:
         name = msg
