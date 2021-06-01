@@ -123,6 +123,7 @@ def handle_message(event):
             sheet_id.update_cell(no, 3, _class)
             sheet_id.update_cell(no, 4, seatnum)
             sheet_id.update_cell(no, 5, name)
+            sheet_id.update_cell(no, 6, '0')
             message = TemplateSendMessage(
                 alt_text='確認班級座號姓名？',
                 template=ConfirmTemplate(
@@ -146,6 +147,10 @@ def handle_message(event):
             message = TextSendMessage(text= '查無此人 請重新輸入')
             line_bot_api.reply_message(event.reply_token, message)
             
+    if 'good job!' in msg:
+        score = str(int(sheet_id.cell(no,6).value) + 10)
+        sheet_id.update_cell(no, 6, score)
+
     if '確認資料' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/bkm2cPn.mp4', 
@@ -153,7 +158,7 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'usually', text = '#1 your ans:usually\ncorrect ans:usually\ngood job!')
+                        action = MessageAction(label = 'usually', text = '#1 your ans : usually\ncorrect ans : usually\ngood job!')
                     ),
                     QuickReplyButton(
                         action = MessageAction(label = 'watch TV', text = '#1 your ans:watch TV\ncorrect ans:usually')
@@ -173,13 +178,13 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'afternoon', text = '#2 ans : afternoon')
+                        action = MessageAction(label = 'afternoon', text = '#2 your ans : afternoon\ncorrect ans : after school')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'after school', text = '#2 ans : after school')
+                        action = MessageAction(label = 'after school', text = '#2 your ans : after school\ncorrect ans : after school\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'after work', text = '#2 ans :after work')
+                        action = MessageAction(label = 'after work', text = '#2 your ans : after work\ncorrect ans : after school')
                     ),  
                 ]
             )
