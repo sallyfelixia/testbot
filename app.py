@@ -153,13 +153,13 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'usually', text = '#1 ans : usually')
+                        action = MessageAction(label = 'usually', text = '#1 your ans:usually\ncorrect answer:usually\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#1 ans : watch TV')
+                        action = MessageAction(label = 'watch TV', text = '#1 your ans:watch TV\ncorrect answer:usually')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'play sports', text = '#1 ans :play sports')
+                        action = MessageAction(label = 'play sports', text = '#1 your ans:play sports\ncorrect answer:usually')
                     ),  
                 ]
             )
@@ -173,13 +173,13 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'afternoon', text = '#2 ans : afternoon')
+                        action = MessageAction(label = 'afternoon', text = '#2 your ans:afternoon\ncorrect answer:after school')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'after school', text = '#2 ans : after school')
+                        action = MessageAction(label = 'after school', text = '#2 your ans:after school\ncorrect answer:after school\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'after work', text = '#2 ans :after work')
+                        action = MessageAction(label = 'after work', text = '#2 your ans:after work\ncorrect answer:after school')
                     ),  
                 ]
             )
@@ -188,15 +188,36 @@ def handle_message(event):
 
     if '#2' in msg:
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/0v0MtpW', 
+            original_content_url='https://imgur.com/0v0MtpW.mp4', 
             preview_image_url='https://imgur.com/hZHDi6D.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch movies', text = '#3 ans : watch movies \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'watch movies', text = '#3 your ans:watch movies\ncorrect answer:watch TV\n以下為填空選擇題 請選出最適當的答案')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#3 ans : new TV \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'new TV', text = '#3 your ans:new TV\ncorrect answer:watch TV\n以下為填空選擇題 請選出最適當的答案')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'watch TV', text = '#3 your ans:watch TV\ncorrect answer:watch TV\ngood job!\n以下為填空選擇題 請選出最適當的答案')
+                    ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+    
+    '''
+    if '#3' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/Bp8x0Ll.mp4', 
+            preview_image_url='https://imgur.com/t7keRVy.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'walk the dog', text = '#3 ans : watch movies \n 以下為填空選擇題 請選出最適當的答案')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'new TV', text = '#3 ans : new TV \n 以下為填空選擇題 請選出最適當的答案')
                     ),
                     QuickReplyButton(
                         action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV \n 以下為填空選擇題 請選出最適當的答案')
@@ -205,6 +226,7 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, message)
+    '''
 
     if '#3' in msg:
         message = TemplateSendMessage(
@@ -216,15 +238,15 @@ def handle_message(event):
             actions=[
                 MessageTemplateAction(
                     label = 'like',
-                    text = '#11 ans : like'
+                    text = '# 11 ans : like'
                 ),
                 MessageTemplateAction(
                     label = 'usually',
-                    text = '#11 ans : usually'
+                    text = '# 11 ans : usually'
                 ),
                 MessageTemplateAction(
                     label= 'have',
-                    text = '#11 ans : have'
+                    text = '# 11 ans : have'
                 )
             ]
         )
