@@ -118,6 +118,7 @@ def handle_message(event):
                     seatnum = sheet_name.cell(i,3).value
                     _class = sheet_name.cell(i,2).value
                     name_exist = True
+                    break
                     
         if name_exist:
             sheet_id.update_cell(no, 3, _class)
@@ -151,7 +152,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
             
 
-    if '確認資料' in msg:
+    if '確認資料' in msg or '#' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/bkm2cPn.mp4', 
             preview_image_url='https://imgur.com/2CJYX6c.png',
@@ -705,7 +706,7 @@ def handle_message(event):
         current = 0
         tag = ''
         for i in range (7, 27):
-            if sheet_id.cell(no,i).value == 0:
+            if sheet_id.cell(no,i).value == '0':
                 current = i-6
                 break
         if current < 11:
