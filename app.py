@@ -102,7 +102,7 @@ def handle_message(event):
                 
     if login_state == 0 or '重新填寫' in msg:
         sheet_id.update_cell(no, 2, str(1))
-        message = TextSendMessage(text= '請輸入姓名')
+        message = TextSendMessage(text= '請輸入姓名\n此步驟耗時較長 請稍候')
         line_bot_api.reply_message(event.reply_token, message)
 
     if login_state == 1:
@@ -134,7 +134,7 @@ def handle_message(event):
                     actions=[
                         PostbackTemplateAction(
                             label="確認",
-                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字 如果沒有影片出現時 請輸入#重新載入題目 並注意重複作答系統不予計分",
+                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字 如果沒有影片出現時 請輸入@重新載入題目 並注意重複作答系統不予計分",
                             data="會員註冊"
                         ),
                         MessageTemplateAction(
@@ -701,6 +701,34 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
        
+    if '@' in msg:
+        current = 0
+        tag = ''
+        for i in range (7, 27):
+            if sheet_id.cell(no,i).value == 0:
+                current = i-6
+                break
+        if current < 11:
+            tag = '#' + str(current)
+        else:
+            tag = '# ' + str(current)
+        message = TemplateSendMessage(
+            alt_text = 'Error message',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/ZBnMXWf.png',
+                title = "Sorry",
+                text = "系統有些延遲",
+                actions=[
+                    MessageTemplateAction(
+                        label = "重新載入",
+                        text = tag
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+            
 
     
 
