@@ -149,6 +149,7 @@ def handle_message(event):
     if '確認資料' in msg:
         message = listening_problem(1)
         line_bot_api.reply_message(event.reply_token, message)
+
     '''        
     if '確認資料' in msg:
         message = VideoSendMessage(
@@ -234,8 +235,8 @@ def handle_message(event):
             ]
         )
     )
-    '''
-        '''
+    
+        
         message = TemplateSendMessage(
             alt_text = 'Problem 1', 
             template = ButtonTemplate(
@@ -258,8 +259,9 @@ def handle_message(event):
                 ]
             )
         )
-        '''
+        
         line_bot_api.reply_message(event.reply_token, message)
+        '''
 
     
         
