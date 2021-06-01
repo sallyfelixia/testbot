@@ -147,7 +147,23 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
             
     if '確認資料' in msg:
-        message = VideoSendMessage(original_content_url='https://imgur.com/bkm2cPn.mp4', preview_image_url='https://imgur.com/FLEz4xe.png')
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/bkm2cPn.mp4', 
+            preview_image_url='https://imgur.com/FLEz4xe.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'usually', text = '#1 ans : usually')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'watch TV', text = '#1 ans : watch TV')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'play sports', text = '#1 ans :play sports')
+                    ),  
+                ]
+            )
+        )
         line_bot_api.reply_message(event.reply_token, message)
 
     
