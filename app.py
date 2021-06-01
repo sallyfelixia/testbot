@@ -127,7 +127,7 @@ def handle_message(event):
                     actions=[
                         PostbackTemplateAction(
                             label="確認",
-                            text="開始作答",
+                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字",
                             data="會員註冊"
                         ),
                         MessageTemplateAction(
@@ -138,45 +138,23 @@ def handle_message(event):
                 )
             )
             line_bot_api.reply_message(event.reply_token, message)
-            '''
-            message = TextSendMessage(text= '你好'+name)
-            line_bot_api.reply_message(event.reply_token, message)
-            '''
         else:
             sheet_id.update_cell(no, 2, str(1))
             message = TextSendMessage(text= '查無此人 請重新輸入')
             line_bot_api.reply_message(event.reply_token, message)
             
-                   
-        '''
-    elif log_in_state == 1:
-        name = msg
-        message = TextSendMessage(text= 'hello')
-        
-        message = TemplateSendMessage(
-            alt_text='姓名確認',
-            template=ConfirmTemplate(
-                text='請確認 你是' + name + '嗎',
-                actions=[
-                    PostbackTemplateAction(
-                        label="是的",
-                        text="開始測驗",
-                    ),
-                    MessageTemplateAction(
-                        label="重新輸入",
-                        text="開始註冊"
-                    )
-                ]
-            )
+    if '確認資料' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/bkm2cPn.mp4'
         )
         line_bot_api.reply_message(event.reply_token, message)
-        log_in_state = 2
-    #elif log_in_state == 2:
+
+    
         
         
     
     
-    
+    '''
     if 'check last ID-CARD location' in msg:
         row = int(sheet_loc.cell(2,7).value) + 1 
         
