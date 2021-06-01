@@ -221,10 +221,10 @@ def handle_message(event):
                         action = MessageAction(label = 'walk the dog', text = '#4 your ans : walk the dog\ncorrect ans : walk the dog\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'new TV', text = '#4 your ans : new TV\ncorrect ans : walk the dog')
+                        action = MessageAction(label = 'walk in the park', text = '#4 your ans : walk in the park\ncorrect ans : walk the dog')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#4 your ans : watch TV\ncorrect ans : walk the dog')
+                        action = MessageAction(label = 'cats and dogs', text = '#4 your ans : cats and dogs\ncorrect ans : walk the dog')
                     ),  
                 ]
             )
@@ -238,13 +238,113 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'save the world', text = '#4 your ans : save the world\ncorrect ans : surf the internet')
+                        action = MessageAction(label = 'save the world', text = '#5 your ans : save the world\ncorrect ans : surf the internet')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'surf the internet', text = '#4 surf the internet\ncorrect ans : surf the internet\ngood job!')
+                        action = MessageAction(label = 'surf the internet', text = '#5 your ans : surf the internet\ncorrect ans : surf the internet\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'surf is up', text = '#4 your ans : surf is up\ncorrect ans : surf the internet')
+                        action = MessageAction(label = 'surf is up', text = '#5 your ans : surf is up\ncorrect ans : surf the internet')
+                    ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '#5' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/cRpfUGP.mp4', 
+            preview_image_url='https://imgur.com/tOUdChN.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'ride a bike', text = '#6 your ans : ride a bike\ncorrect ans : read books')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'read papers', text = '#6 your ans : read papers\ncorrect ans : read books')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'read books', text = '#6 your ans : read books\ncorrect ans : read books\ngood job!')
+                    ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '#6' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/RdhTRe4.mp4', 
+            preview_image_url='https://imgur.com/7ezNT5R.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'play the piano', text = '#7 your ans : play the piano\ncorrect ans : play sports')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'play sports', text = '#7 your ans : play sports\ncorrect ans : play sports\ngood job!')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'play the sport', text = '#7 your ans : play the sport\ncorrect ans : play sports')
+                    ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '#7' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/LDIemg1.mp4', 
+            preview_image_url='https://imgur.com/BgRCXLX.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'listen to music', text = '#8 your ans : listen to music\ncorrect ans : listen to music\ngood job!')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'list of music', text = '#8 your ans : list of music\ncorrect ans : listen to music')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = "that's the music", text = "#8 your ans : that's the music\ncorrect ans : listen to music")
+                    ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '#8' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/lVxpNDp.mp4', 
+            preview_image_url='https://imgur.com/fdgthsL.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'do housework', text = '#9 your ans : do housework\ncorrect ans : do my homework')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'do me a favor', text = '#9 your ans : do me a favor\ncorrect ans : do my homework')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = "do my homework", text = "#9 your ans : do my homework\ncorrect ans : do my homework\ngood job!")
+                    ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '#9' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/nRqfbNB.mp4', 
+            preview_image_url='https://imgur.com/qRmhPT1.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'some time', text = '# 10 your ans : some time\ncorrect ans : sometimes')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'sometimes', text = '# 10 your ans : sometimes\ncorrect ans : sometimes\ngood job!')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = "some times", text = "# 10 your ans : some times\ncorrect ans : sometimes")
                     ),  
                 ]
             )
@@ -253,27 +353,255 @@ def handle_message(event):
 
     if '# 10' in msg:
         message = TemplateSendMessage(
-        alt_text = 'Problem 11',
-        template=ButtonsTemplate(
-            thumbnail_image_url = 'https://imgur.com/E4wtVGJ.png',
-            title = "I ____ do homework after school.",
-            text = "選擇填入空格的詞句",
-            actions=[
-                MessageTemplateAction(
-                    label = 'like',
-                    text = '# 11 ans : like'
-                ),
-                MessageTemplateAction(
-                    label = 'usually',
-                    text = '# 11 ans : usually'
-                ),
-                MessageTemplateAction(
-                    label= 'have',
-                    text = '# 11 ans : have'
-                )
-            ]
+            alt_text = 'Problem 11',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/E4wtVGJ.png',
+                title = "I ____ do homework after school.",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'like',
+                        text = '# 11 your ans : like\ncorrect ans : usually'
+                    ),
+                    MessageTemplateAction(
+                        label = 'usually',
+                        text = '# 11 your ans : usually\ncorrect ans : usually\ngood job!'
+                    ),
+                    MessageTemplateAction(
+                        label= 'have',
+                        text = '# 11 your ans : have\ncorrect ans : usually'
+                    )
+                ]
+            )
         )
-    )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 11' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 12',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/Rp9LKBa.png',
+                title = "Jack usually ________ the dog in the morning. ",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'play the piano',
+                        text = '# 12 your ans : play the piano\ncorrect ans : walks'
+                    ),
+                    MessageTemplateAction(
+                        label = 'listen',
+                        text = '# 12 your ans : listen\ncorrect ans : walks'
+                    ),
+                    MessageTemplateAction(
+                        label= 'walks',
+                        text = '# 12 your ans : walks\ncorrect ans : walks\ngood job!'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 12' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 13',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/vriIBqw.png',
+                title = "Mom and I sometimes _____________ the internet at home.",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'browse',
+                        text = '# 13 your ans : browse\ncorrect ans : surf'
+                    ),
+                    MessageTemplateAction(
+                        label = 'look',
+                        text = '# 13 your ans : look\ncorrect ans : surf'
+                    ),
+                    MessageTemplateAction(
+                        label= 'surf',
+                        text = '# 13 your ans : surf\ncorrect ans : surf\ngood job!'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 13' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 14',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/2ktphE6.png',
+                title = "______ you usually play sports in after work?",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'Do',
+                        text = '# 14 your ans : Do\ncorrect ans : Do\ngood job!'
+                    ),
+                    MessageTemplateAction(
+                        label = 'Does',
+                        text = '# 14 your ans : Does\ncorrect ans : Do'
+                    ),
+                    MessageTemplateAction(
+                        label= 'Are',
+                        text = '# 14 your ans : Are\ncorrect ans : Do'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 14' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 15',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/NSYMEMS.png',
+                title = "________ Lily ________ homework after school?",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'Do does',
+                        text = '# 15 your ans : Do does\ncorrect ans : Does do'
+                    ),
+                    MessageTemplateAction(
+                        label = 'Do do',
+                        text = '# 15 your ans : Do do\ncorrect ans : Does do'
+                    ),
+                    MessageTemplateAction(
+                        label= 'Does do',
+                        text = '# 15 your ans : Does do\ncorrect ans : Does do\ngood job!'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+    
+    if '# 15' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 16',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/9ksK0is.png',
+                title = "_______ does your brother do after scool?",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'When',
+                        text = '# 16 your ans : When\ncorrect ans : What'
+                    ),
+                    MessageTemplateAction(
+                        label = 'Where',
+                        text = '# 16 your ans : Where\ncorrect ans : What'
+                    ),
+                    MessageTemplateAction(
+                        label= 'What',
+                        text = '# 16 your ans : What\ncorrect ans : What\ngood job!'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 16' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 17',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/undefined.png',
+                title = "A: Does Amy read books after school? B: Yes, _____ _____. ",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'she does',
+                        text = '# 17 your ans : she does\ncorrect ans : she does\ngood job!'
+                    ),
+                    MessageTemplateAction(
+                        label = 'he does',
+                        text = '# 17 your ans : he does\ncorrect ans : she does'
+                    ),
+                    MessageTemplateAction(
+                        label= 'she do',
+                        text = '# 17 your ans : she do\ncorrect ans : she does'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 17' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 18',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/SJoGeQT.png',
+                title = "A: What do you do in the morning? B:_______ listen to music.",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'You',
+                        text = '# 18 your ans : You\ncorrect ans : I'
+                    ),
+                    MessageTemplateAction(
+                        label = 'He',
+                        text = '# 18 your ans : He\ncorrect ans : I'
+                    ),
+                    MessageTemplateAction(
+                        label= 'I',
+                        text = '# 18 your ans : I\ncorrect ans : I\ngood job!'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 18' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 19',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/JQZd2b9.png',
+                title = "Do you ________ walk the dog in the park?",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = 'want',
+                        text = '# 19 your ans : want\ncorrect ans : sometimes'
+                    ),
+                    MessageTemplateAction(
+                        label = 'sometimes',
+                        text = '# 19 your ans : sometimes\ncorrect ans : sometimes\ngood job!'
+                    ),
+                    MessageTemplateAction(
+                        label= 'no',
+                        text = '# 19 your ans : no\ncorrect ans : sometimes'
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '# 19' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 20',
+            template=ButtonsTemplate(
+                thumbnail_image_url = 'https://imgur.com/goWtiMu.png',
+                title = "I ______ usually watch TV after school.",
+                text = "選擇填入空格的詞句",
+                actions=[
+                    MessageTemplateAction(
+                        label = "don't",
+                        text = "# 20 your ans : don't\ncorrect ans : don't\ngood job!"
+                    ),
+                    MessageTemplateAction(
+                        label = "no",
+                        text = "# 20 your ans : no\ncorrect ans : don't"
+                    ),
+                    MessageTemplateAction(
+                        label = "not",
+                        text = "# 20 your ans : not\ncorrect ans : don't"
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+    
+
         '''
         message = TemplateSendMessage(
             alt_text = 'Problem 1', 
@@ -298,7 +626,7 @@ def handle_message(event):
             )
         )
         '''
-        line_bot_api.reply_message(event.reply_token, message)
+        
 
     
         
