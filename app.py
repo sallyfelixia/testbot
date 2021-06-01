@@ -81,7 +81,7 @@ def handle_message(event):
     total_num = int(sheet_id.cell(100,1).value)
     registered = False
     no = 0
-    login_state = ''
+    login_state = 0
 
     #check registration state
     if total_num != 0:
@@ -103,7 +103,8 @@ def handle_message(event):
     if login_state == 0:
         message = TextSendMessage(text= '請輸入姓名')
         line_bot_api.reply_message(event.reply_token, message)
-        login_state = 1
+        sheet_id.update_cell(no, 2, str(1))
+    
     '''
     if login_state == 1:
         student_num = int(sheet_name.cell(1,1).value)
