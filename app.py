@@ -208,6 +208,29 @@ def handle_message(event):
 
     if '#3' in msg:
         message = TemplateSendMessage(
+        alt_text = 'Problem 11',
+        template=ButtonsTemplate(
+            thumbnail_image_url = 'https://imgur.com/E4wtVGJ.png',
+            title = "I ____ do homework after school.",
+            text = "選擇填入空格的詞句",
+            actions=[
+                MessageTemplateAction(
+                    label = 'like',
+                    text = '#11 ans : like'
+                ),
+                MessageTemplateAction(
+                    label = 'usually',
+                    text = '#11 ans : usually'
+                ),
+                MessageTemplateAction(
+                    label= 'have',
+                    text = '#11 ans : have'
+                )
+            ]
+        )
+    )
+        '''
+        message = TemplateSendMessage(
             alt_text = 'Problem 1', 
             template = ButtonTemplate(
                 thumbnail_image_url = 'https://imgur.com/2CJYX6c.png',
@@ -229,6 +252,7 @@ def handle_message(event):
                 ]
             )
         )
+        '''
         line_bot_api.reply_message(event.reply_token, message)
 
     
