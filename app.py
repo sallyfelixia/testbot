@@ -81,7 +81,7 @@ def handle_message(event):
     total_num = int(sheet_id.cell(100,1).value)
     registered = False
     no = 0
-    login_state = ''
+    login_state = 0
 
     #check registration state
     if total_num != 0:
@@ -98,9 +98,10 @@ def handle_message(event):
         registered = True
 
     login_state = int(sheet_id.cell(no,2).value)
-    # 0:id reg / 1:class reg / 2:num reg / 3:name
+    # 0:id reg / 1:name in / 2:name confirm / 3:start
                 
     if login_state == 0:
+        sheet_id.update_cell(no, 2, str(1))
         message = TextSendMessage(text= '請輸入姓名')
         line_bot_api.reply_message(event.reply_token, message)
 
