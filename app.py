@@ -167,44 +167,44 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     if '#1' in msg:
-    message = VideoSendMessage(
-        original_content_url='https://imgur.com/nRqfbNB.mp4', 
-        preview_image_url='https://imgur.com/4ARs5aO.png',
-        quick_reply = QuickReply(
-            items = [
-                QuickReplyButton(
-                    action = MessageAction(label = 'afternoon', text = '#2 ans : afternoon')
-                ),
-                QuickReplyButton(
-                    action = MessageAction(label = 'after school', text = '#2 ans : after school')
-                ),
-                QuickReplyButton(
-                    action = MessageAction(label = 'after work', text = '#2 ans :after work')
-                ),  
-            ]
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/nRqfbNB.mp4', 
+            preview_image_url='https://imgur.com/4ARs5aO.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'afternoon', text = '#2 ans : afternoon')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'after school', text = '#2 ans : after school')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'after work', text = '#2 ans :after work')
+                    ),  
+                ]
+            )
         )
-    )
-    line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, message)
 
     if '#2' in msg:
-    message = VideoSendMessage(
-        original_content_url='https://imgur.com/FDujC2X.mp4', 
-        preview_image_url='https://imgur.com/hZHDi6D.png',
-        quick_reply = QuickReply(
-            items = [
-                QuickReplyButton(
-                    action = MessageAction(label = 'watch movies', text = '#3 ans : watch movies')
-                ),
-                QuickReplyButton(
-                    action = MessageAction(label = 'watch TV', text = '#3 ans : new TV')
-                ),
-                QuickReplyButton(
-                    action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV')
-                ),  
-            ]
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/FDujC2X.mp4', 
+            preview_image_url='https://imgur.com/hZHDi6D.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'watch movies', text = '#3 ans : watch movies')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'watch TV', text = '#3 ans : new TV')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV')
+                    ),  
+                ]
+            )
         )
-    )
-    line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, message)
 
     
         
