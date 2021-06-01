@@ -198,13 +198,13 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch movies', text = '#3 ans : watch movies \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'watch movies', text = '#3 your ans : watch movies\ncorrect ans : watch TV')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'new TV', text = '#3 ans : new TV \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'new TV', text = '#3 your ans : new TV\ncorrect ans : watch TV')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'watch TV', text = '#3 your ans : watch TV\ncorrect ans : watch TV\ngood job!')
                     ),  
                 ]
             )
@@ -218,13 +218,33 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'walk the dog', text = '#3 ans : watch movies \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'walk the dog', text = '#4 your ans : walk the dog\ncorrect ans : walk the dog\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'new TV', text = '#3 ans : new TV \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'new TV', text = '#4 your ans : new TV\ncorrect ans : walk the dog')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV \n 以下為填空選擇題 請選出最適當的答案')
+                        action = MessageAction(label = 'watch TV', text = '#4 your ans : watch TV\ncorrect ans : walk the dog')
+                    ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '#4' in msg:
+        message = VideoSendMessage(
+            original_content_url='https://imgur.com/mITn8uT.mp4', 
+            preview_image_url='https://imgur.com/st821yg.png',
+            quick_reply = QuickReply(
+                items = [
+                    QuickReplyButton(
+                        action = MessageAction(label = 'save the world', text = '#4 your ans : save the world\ncorrect ans : surf the internet')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'surf the internet', text = '#4 surf the internet\ncorrect ans : surf the internet\ngood job!')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label = 'surf is up', text = '#4 your ans : surf is up\ncorrect ans : surf the internet')
                     ),  
                 ]
             )
