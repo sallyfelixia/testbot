@@ -100,7 +100,7 @@ def handle_message(event):
     login_state = int(sheet_id.cell(no,2).value)
     # 0:id reg / 1:name in / 2:name confirm / 3:start
                 
-    if login_state == 0:
+    if login_state == 0 or '重新填寫' in msg:
         sheet_id.update_cell(no, 2, str(1))
         message = TextSendMessage(text= '請輸入姓名')
         line_bot_api.reply_message(event.reply_token, message)
@@ -123,7 +123,7 @@ def handle_message(event):
             message = TemplateSendMessage(
                 alt_text='確認班級座號姓名？',
                 template=ConfirmTemplate(
-                    text="你是"+ _class + seatnum + '號 ' + name + '嗎?',
+                    text="你是"+ _class + ' ' + seatnum + '號 ' + name + '嗎?',
                     actions=[
                         PostbackTemplateAction(
                             label="確認",
@@ -146,6 +146,7 @@ def handle_message(event):
             sheet_id.update_cell(no, 2, str(1))
             message = TextSendMessage(text= '查無此人 請重新輸入')
             line_bot_api.reply_message(event.reply_token, message)
+            
                    
         '''
     elif log_in_state == 1:
