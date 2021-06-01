@@ -144,9 +144,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
             
     if '確認資料' in msg:
-        message = VideoSendMessage(
-            original_content_url='https://imgur.com/bkm2cPn.mp4'
-        )
+        message = VideoSendMessage(original_content_url='https://imgur.com/bkm2cPn.mp4', preview_image_url='https://imgur.com/FLEz4xe.png')
         line_bot_api.reply_message(event.reply_token, message)
 
     
