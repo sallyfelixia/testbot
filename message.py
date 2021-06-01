@@ -39,7 +39,7 @@ def listening_problem(num):
                             action = MessageAction(label = option_2, text = probelm_tag + ' your ans:' + option_2 + '\ncorrect answer:' + answer)
                         ),
                         QuickReplyButton(
-                            action = MessageAction(label = option_3, text = text = probelm_tag + ' your ans:' + option_3 + '\ncorrect answer:' + answer)
+                            action = MessageAction(label = option_3, text = probelm_tag + ' your ans:' + option_3 + '\ncorrect answer:' + answer)
                         ),  
                     ]
                 )
