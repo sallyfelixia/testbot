@@ -153,13 +153,13 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'usually', text = '#1 ans : usually')
+                        action = MessageAction(label = 'usually', text = '#1 your ans:usually\ncorrect ans:usually\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#1 ans : watch TV')
+                        action = MessageAction(label = 'watch TV', text = '#1 your ans:watch TV\ncorrect ans:usually')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'play sports', text = '#1 ans :play sports')
+                        action = MessageAction(label = 'play sports', text = '#1 your ans:play sports\ncorrect ans:usually')
                     ),  
                 ]
             )
