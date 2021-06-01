@@ -611,7 +611,7 @@ def handle_message(event):
                 template=ButtonsTemplate(
                     thumbnail_image_url = 'https://imgur.com/k1jt05e.png',
                     title = "作答完成",
-                    text = "你的分數" + sheet_id.cell(no,6).value
+                    text = "你的分數" + sheet_id.cell(no,6).value,
                     actions=[
                         MessageTemplateAction(
                             label = "我知道了!",
@@ -627,7 +627,7 @@ def handle_message(event):
                 template=ButtonsTemplate(
                     thumbnail_image_url = 'https://imgur.com/ZBnMXWf.png',
                     title = "作答有誤",
-                    text = "你的分數超過100分 有重複作答 下次請注意!"
+                    text = "你的分數超過100分 有重複作答 下次請注意!",
                     actions=[
                         MessageTemplateAction(
                             label = "我知道了!",
