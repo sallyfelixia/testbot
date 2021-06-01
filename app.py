@@ -122,6 +122,10 @@ def handle_message(event):
         if name_exist:
             message = TextSendMessage(text= '你好'+name)
             line_bot_api.reply_message(event.reply_token, message)
+        else:
+            sheet_id.update_cell(no, 2, str(1))
+            message = TextSendMessage(text= '查無此人 請重新輸入')
+            line_bot_api.reply_message(event.reply_token, message)
                    
         '''
     elif log_in_state == 1:
