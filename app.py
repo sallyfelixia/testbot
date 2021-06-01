@@ -120,7 +120,23 @@ def handle_message(event):
                     name_exist = True
                     
         if name_exist:
-            message = Confirm_Template()
+            message = TemplateSendMessage(
+                alt_text='確認班級座號姓名？',
+                template=ConfirmTemplate(
+                    text="你是"+ _class + seatnum + '號 ' + name + '嗎?',
+                    actions=[
+                        PostbackTemplateAction(
+                            label="確認",
+                            text="開始作答",
+                            data="會員註冊"
+                        ),
+                        MessageTemplateAction(
+                            label="重新填寫",
+                            text="重新填寫"
+                        )
+                    ]
+                )
+            )
             line_bot_api.reply_message(event.reply_token, message)
             '''
             message = TextSendMessage(text= '你好'+name)
