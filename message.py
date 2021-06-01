@@ -1,224 +1,321 @@
-
-from flask import Flask, request, abort
-
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
+#這些是LINE官方開放的套件組合透過import來套用這個檔案上
+from linebot import (LineBotApi, WebhookHandler)
+from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
-
-
-#======這裡是呼叫的檔案內容=====
-from message import *
-from new import *
-from Function import *
-#======這裡是呼叫的檔案內容=====
-
-#======python的函數庫==========
-import tempfile, os
-import datetime
-import time
-import traceback
-#======python的函數庫==========
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
-
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 client = gspread.authorize(creds)
-sheet = client.open("English_test")
-sheet_problem = sheet.get_worksheet(0)
-sheet_option = sheet.get_worksheet(1)
-sheet_id = sheet.get_worksheet(2)
-sheet_name = sheet.get_worksheet(3)
+sheet = client.open("test_1_db")
+sheet_loc = sheet.get_worksheet(0)
+sheet_cost = sheet.get_worksheet(1)
+sheet_wal = sheet.get_worksheet(2)
+sheet_light = sheet.get_worksheet(3)
+sheet_pass = sheet.get_worksheet(4)
 
-def static_vars(**kwargs):
-    def decorate(func):
-        for k in kwargs:
-            setattr(func, k, kwargs[k])
-        return func
-    return decorate
+#ImagemapSendMessage(組圖訊息)
+def imagemap_message():
+    message = ImagemapSendMessage(
+        base_url="https://i.imgur.com/BfTFVDN.jpg",
+        alt_text='最新的合作廠商有誰呢？',
+        base_size=BaseSize(height=2000, width=2000),
+        actions=[
+            URIImagemapAction(
+                #家樂福
+                link_uri="https://tw.shop.com/search/%E5%AE%B6%E6%A8%82%E7%A6%8F",
+                area=ImagemapArea(
+                    x=0, y=0, width=1000, height=1000
+                )
+            ),
+            URIImagemapAction(
+                #生活市集
+                link_uri="https://tw.shop.com/search/%E7%94%9F%E6%B4%BB%E5%B8%82%E9%9B%86",
+                area=ImagemapArea(
+                    x=1000, y=0, width=1000, height=1000
+                )
+            ),
+            URIImagemapAction(
+                #阿瘦皮鞋
+                link_uri="https://tw.shop.com/search/%E9%98%BF%E7%98%A6%E7%9A%AE%E9%9E%8B",
+                area=ImagemapArea(
+                    x=0, y=1000, width=1000, height=1000
+                )
+            ),
+            URIImagemapAction(
+                #塔吉特千層蛋糕
+                link_uri="https://tw.shop.com/search/%E5%A1%94%E5%90%89%E7%89%B9",
+                area=ImagemapArea(
+                    x=1000, y=1000, width=1000, height=500
+                )
+            ),
+            URIImagemapAction(
+                #亞尼克生乳捲
+                link_uri="https://tw.shop.com/search/%E4%BA%9E%E5%B0%BC%E5%85%8B",
+                area=ImagemapArea(
+                    x=1000, y=1500, width=1000, height=500
+                )
+            )
+        ]
+    )
+    return message
 
+#TemplateSendMessage - ButtonsTemplate (按鈕介面訊息)
+def buttons_message():
+    message = TemplateSendMessage(
+        alt_text='好消息來囉～',
+        template=ButtonsTemplate(
+            thumbnail_image_url="https://pic2.zhimg.com/v2-de4b8114e8408d5265503c8b41f59f85_b.jpg",
+            title="是否要進行抽獎活動？",
+            text="輸入生日後即獲得抽獎機會",
+            actions=[
+                DatetimePickerTemplateAction(
+                    label="請選擇生日",
+                    data="input_birthday",
+                    mode='date',
+                    initial='1990-01-01',
+                    max='2019-03-10',
+                    min='1930-01-01'
+                ),
+                MessageTemplateAction(
+                    label="看抽獎品項",
+                    text="有哪些抽獎品項呢？"
+                ),
+                URITemplateAction(
+                    label="免費註冊享回饋",
+                    uri="https://tw.shop.com/nbts/create-myaccount.xhtml?returnurl=https%3A%2F%2Ftw.shop.com%2F"
+                )
+            ]
+        )
+    )
+    return message
 
-app = Flask(__name__)
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
+#TemplateSendMessage - ConfirmTemplate(確認介面訊息)
+def Confirm_Template():
 
-# Channel Access Token
-line_bot_api = LineBotApi('TOi303gvTtC4ncGBIaUJmSLDvjRZrnbzpBuAr1f2SMh8WtjIXmTzFH1ALHzqpNruGPYT+c2KGNbIeDM5Hzn9fjR5m3ql1wvyFGPNk956PuA9U3HmcInqabuiPpxwRX/77UiN2iiF2aRZ2cKEg9LREwdB04t89/1O/w1cDnyilFU=')
+    message = TemplateSendMessage(
+        alt_text='是否註冊成為會員？',
+        template=ConfirmTemplate(
+            text="是否註冊成為會員？",
+            actions=[
+                PostbackTemplateAction(
+                    label="馬上註冊",
+                    text="現在、立刻、馬上",
+                    data="會員註冊"
+                ),
+                MessageTemplateAction(
+                    label="查詢其他功能",
+                    text="查詢其他功能"
+                )
+            ]
+        )
+    )
+    return message
 
-# Channel Secret
-handler = WebhookHandler('57853dccc508c4b194e42454586e9969')
+#旋轉木馬按鈕訊息介面
 
-# 監聽所有來自 /callback 的 Post Request
-@app.route("/callback", methods=['POST'])
-def callback():
-    # get X-Line-Signature header value
-    signature = request.headers['X-Line-Signature']
-    # get request body as text
-    body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-    # handle webhook body
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-    return 'OK'
-
-# 處理訊息
-@handler.add(MessageEvent, message=TextMessage)
-@static_vars(counter=0)
-def handle_message(event):
-    
-
-    msg = event.message.text
-    user_id = event.source.user_id
-    total_num = int(sheet_id.cell(100,1).value)
-    registered = False
-    no = 0
-    login_state = 0
-
-    #check registration state
-    if total_num != 0:
-        for i in range(1,total_num + 1):
-            if sheet_id.cell(i,1).value == user_id:
-                no = i
-                registered = True
-
-    if not registered:
-        no = total_num + 1
-        sheet_id.update_cell(no, 1, user_id)
-        sheet_id.update_cell(no, 2, str(0))
-        sheet_id.update_cell(100, 1, str(no))
-        registered = True
-
-    login_state = int(sheet_id.cell(no,2).value)
-    # 0:id reg / 1:name in / 2:name confirm / 3:start
-                
-    if login_state == 0 or '重新填寫' in msg:
-        sheet_id.update_cell(no, 2, str(1))
-        message = TextSendMessage(text= '請輸入姓名')
-        line_bot_api.reply_message(event.reply_token, message)
-
-    if login_state == 1:
-        sheet_id.update_cell(no, 2, str(2))
-        student_num = int(sheet_name.cell(1,1).value)
-        name = msg
-        seatnum = ''
-        _class = ''
-        name_exist = False
-        
-        for i in range (1,student_num + 1):
-                if sheet_name.cell(i,1).value == msg:
-                    seatnum = sheet_name.cell(i,3).value
-                    _class = sheet_name.cell(i,2).value
-                    name_exist = True
-                    
-        if name_exist:
-            message = TemplateSendMessage(
-                alt_text='確認班級座號姓名？',
-                template=ConfirmTemplate(
-                    text="你是"+ _class + ' ' + seatnum + '號 ' + name + '嗎?',
+def Carousel_Template_menu():
+    message = TemplateSendMessage(
+        alt_text='一則旋轉木馬按鈕訊息',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/3whWd6A.png',
+                    title='ID-card location',
+                    text='check last ID-CARD location',
                     actions=[
-                        PostbackTemplateAction(
-                            label="確認",
-                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字",
-                            data="會員註冊"
-                        ),
                         MessageTemplateAction(
-                            label="重新填寫",
-                            text="重新填寫"
+                            label='tap to check',
+                            text='check last ID-CARD location'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/Ev4ToWr.png',
+                    title='Wallet location',
+                    text='check present wallet location',
+                    actions=[
+                        MessageTemplateAction(
+                            label='tap to check',
+                            text='check present wallet location'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/5NqGKmh.png',
+                    title='Cost',
+                    text='check cost info',
+                    actions=[
+                        MessageTemplateAction(
+                            label='tap to check',
+                            text='check cost info'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/oczX1yI.png',
+                    title='Light',
+                    text='turn on signal light',
+                    actions=[
+                        MessageTemplateAction(
+                            label='tap to light up',
+                            text='turn on signal light'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/McGA5nL.png',
+                    title='Password setting',
+                    text='set wallet password',
+                    actions=[
+                        MessageTemplateAction(
+                            label='tap to set',
+                            text='set wallet password'
                         )
                     ]
                 )
-            )
-            line_bot_api.reply_message(event.reply_token, message)
-        else:
-            sheet_id.update_cell(no, 2, str(1))
-            message = TextSendMessage(text= '查無此人 請重新輸入')
-            line_bot_api.reply_message(event.reply_token, message)
-            
-    if '確認資料' in msg:
-        message = VideoSendMessage(original_content_url='https://imgur.com/bkm2cPn.mp4', preview_image_url='https://imgur.com/FLEz4xe.png')
-        line_bot_api.reply_message(event.reply_token, message)
-
-    
-        
-        
-    
-    
-    '''
-    if 'check last ID-CARD location' in msg:
-        row = int(sheet_loc.cell(2,7).value) + 1 
-        
-        sim_lon = int(sheet_loc.cell(row,2).value) + 0.00000000000001 * int(sheet_loc.cell(row,3).value)
-        sim_lat = int(sheet_loc.cell(row,4).value) + 0.00000000000001 * int(sheet_loc.cell(row,5).value)
-        
-        sim_lon = int(sheet_loc.cell(100,2).value) + 0.00000000000001 * int(sheet_loc.cell(100,3).value)
-        sim_lat = int(sheet_loc.cell(100,4).value) + 0.00000000000001 * int(sheet_loc.cell(100,5).value)
-        message = LocationSendMessage(
-            title='previous location',
-            address='上一次拿出卡片的位置',
-            latitude = sim_lat,
-            longitude = sim_lon
+            ], image_aspect_ratio = 'rectangle', image_size = 'cover'
         )
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'check present wallet location' in msg:
-        
-        sim_lon = int(sheet_wal.cell(2,2).value) + 0.00000000000001 * int(sheet_wal.cell(2,3).value)
-        sim_lat = int(sheet_wal.cell(2,4).value) + 0.00000000000001 * int(sheet_wal.cell(2,5).value)
-        
-        sim_lon = int(sheet_wal.cell(100,2).value) + 0.00000000000001 * int(sheet_wal.cell(100,3).value)
-        sim_lat = int(sheet_wal.cell(100,4).value) + 0.00000000000001 * int(sheet_wal.cell(100,5).value)
-        message = LocationSendMessage(
-            title='walltet location',
-            address='錢包的現在位置',
-            latitude = sim_lat,
-            longitude = sim_lon
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'check cost info' in msg:
-        
-        text = ''
-        for i in range(1,7,1):
-            text += sheet_cost.cell(i,7).value
-            text += sheet_cost.cell(i,8).value
-            text += '\n'
-            message = TextSendMessage(text)
-        
-        message = Carousel_Template_cost()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'off' in msg:
-        message = TextSendMessage(text= 'light is turned off')
-        line_bot_api.reply_message(event.reply_token, message)
-        sheet_light.update_cell(1, 1, str(0))
-    elif 'set wallet password' in msg:
-        message = TextSendMessage(text= 'please enter your "auth" + your 4 digit "new password"')
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'auth' in msg:
-        password = ''
-        for i in range (4,8,1):
-            password += msg[i]
-        sheet_pass.update_cell(1, 1, password)
-        message = TextSendMessage(text= 'password is set to ' + password)
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'turn on signal light' in msg:
-        message = Carousel_Template_off()
-        line_bot_api.reply_message(event.reply_token, message)
-        sheet_light.update_cell(1, 1, str(1))
-    else:
-        message = Carousel_Template_menu()
-        line_bot_api.reply_message(event.reply_token, message)
-        
-        '''
-    
+    )
+    return message
 
-import os
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+def Carousel_Template_off():
+    message = TemplateSendMessage(
+        alt_text='一則旋轉木馬按鈕訊息',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/774QQKE.png',
+                    title='Turn off',
+                    text='turn off the light',
+                    actions=[
+                        MessageTemplateAction(
+                            label='tap to off',
+                            text='off'
+                        )
+                    ]
+                )
+            ], image_aspect_ratio = 'rectangle', image_size = 'cover'
+        )
+    )
+    return message
+
+def Carousel_Template_cost():
+    message = TemplateSendMessage(
+        alt_text='一則旋轉木馬按鈕訊息',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/CHPYx2q.png',
+                    title= '$' + sheet_cost.cell(1,8).value,
+                    text='food cost',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/OUXtBls.png',
+                    title= '$' + sheet_cost.cell(2,8).value,
+                    text='clothing cost',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/oyNcabU.png',
+                    title= '$' + sheet_cost.cell(3,8).value,
+                    text='housing',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/e5oOgav.png',
+                    title= '$' + sheet_cost.cell(4,8).value,
+                    text='transportation',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/iW98jue.png',
+                    title= '$' + sheet_cost.cell(5,8).value,
+                    text='education',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://imgur.com/IcUTcAe.png',
+                    title= '$' + sheet_cost.cell(6,8).value,
+                    text='entertainment',
+                    actions=[
+                        MessageTemplateAction(
+                            label='done',
+                            text='done'
+                        )
+                    ]
+                )
+            ], image_aspect_ratio = 'rectangle', image_size = 'cover'
+        )
+    )
+    return message
+
+#TemplateSendMessage - ImageCarouselTemplate(圖片旋轉木馬)
+def image_carousel_message1():
+    message = TemplateSendMessage(
+        alt_text='圖片旋轉木馬',
+        template=ImageCarouselTemplate(
+            columns=[
+                ImageCarouselColumn(
+                    image_url="https://i.imgur.com/uKYgfVs.jpg",
+                    action=URITemplateAction(
+                        label="新鮮水果",
+                        uri="http://img.juimg.com/tuku/yulantu/110709/222-110F91G31375.jpg"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url="https://i.imgur.com/QOcAvjt.jpg",
+                    action=URITemplateAction(
+                        label="新鮮蔬菜",
+                        uri="https://cdn.101mediaimage.com/img/file/1410464751urhp5.jpg"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url="https://i.imgur.com/Np7eFyj.jpg",
+                    action=URITemplateAction(
+                        label="可愛狗狗",
+                        uri="http://imgm.cnmo-img.com.cn/appimg/screenpic/big/674/673928.JPG"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url="https://i.imgur.com/QRIa5Dz.jpg",
+                    action=URITemplateAction(
+                        label="可愛貓咪",
+                        uri="https://m-miya.net/wp-content/uploads/2014/07/0-065-1.min_.jpg"
+                    )
+                )
+            ]
+        )
+    )
+    return message
+
+#關於LINEBOT聊天內容範例
