@@ -118,6 +118,10 @@ def handle_message(event):
                     seatnum = sheet_name.cell(i,3).value
                     _class = sheet_name.cell(i,2).value
                     name_exist = True
+         if name_exist:
+            message = TextSendMessage(text= '你好'+name)
+            line_bot_api.reply_message(event.reply_token, message)
+                   
         '''
     elif log_in_state == 1:
         name = msg
