@@ -145,7 +145,11 @@ def handle_message(event):
             sheet_id.update_cell(no, 2, str(1))
             message = TextSendMessage(text= '查無此人 請重新輸入')
             line_bot_api.reply_message(event.reply_token, message)
-            
+
+    if '確認資料' in msg:
+        message = listening_problem(1)
+        line_bot_api.reply_message(event.reply_token, message)
+    '''        
     if '確認資料' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/bkm2cPn.mp4', 
@@ -165,7 +169,8 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, message)
-
+    
+    
     if '#1' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/FDujC2X.mp4', 
@@ -205,28 +210,6 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, message)
-    
-    '''
-    if '#3' in msg:
-        message = VideoSendMessage(
-            original_content_url='https://imgur.com/Bp8x0Ll.mp4', 
-            preview_image_url='https://imgur.com/t7keRVy.png',
-            quick_reply = QuickReply(
-                items = [
-                    QuickReplyButton(
-                        action = MessageAction(label = 'walk the dog', text = '#3 ans : watch movies \n 以下為填空選擇題 請選出最適當的答案')
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label = 'new TV', text = '#3 ans : new TV \n 以下為填空選擇題 請選出最適當的答案')
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV \n 以下為填空選擇題 請選出最適當的答案')
-                    ),  
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    '''
 
     if '#3' in msg:
         message = TemplateSendMessage(
@@ -251,6 +234,7 @@ def handle_message(event):
             ]
         )
     )
+    '''
         '''
         message = TemplateSendMessage(
             alt_text = 'Problem 1', 
