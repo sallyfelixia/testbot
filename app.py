@@ -168,7 +168,7 @@ def handle_message(event):
 
     if '#1' in msg:
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/nRqfbNB.mp4', 
+            original_content_url='https://imgur.com/FDujC2X.mp4', 
             preview_image_url='https://imgur.com/4ARs5aO.png',
             quick_reply = QuickReply(
                 items = [
@@ -188,19 +188,44 @@ def handle_message(event):
 
     if '#2' in msg:
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/FDujC2X.mp4', 
+            original_content_url='https://imgur.com/0v0MtpW', 
             preview_image_url='https://imgur.com/hZHDi6D.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch movies', text = '#3 ans : watch movies')
+                        action = MessageAction(label = 'watch movies', text = '#3 ans : watch movies \n 以下為填空選擇題 請選出最適當的答案')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#3 ans : new TV')
+                        action = MessageAction(label = 'watch TV', text = '#3 ans : new TV \n 以下為填空選擇題 請選出最適當的答案')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV')
+                        action = MessageAction(label = 'watch TV', text = '#3 ans :watch TV \n 以下為填空選擇題 請選出最適當的答案')
                     ),  
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if '#3' in msg:
+        message = TemplateSendMessage(
+            alt_text = 'Problem 1', 
+            template = ButtonTemplate(
+                thumbnail_image_url = 'https://imgur.com/2CJYX6c.png',
+                title = 'I ____ do homework after school.',
+                text = '選擇填入空格的詞句',
+                actions = [
+                    MessageTemplateAction(
+                        title = 'like',
+                        text = '#11 ans : like'
+                    ),
+                    MessageTemplateAction(
+                        title = 'usually',
+                        text = '#11 ans : usually'
+                    ),
+                    MessageTemplateAction(
+                        title = 'have',
+                        text = '#11 ans : have'
+                    ),
                 ]
             )
         )
