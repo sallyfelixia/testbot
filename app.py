@@ -120,8 +120,12 @@ def handle_message(event):
                     name_exist = True
                     
         if name_exist:
+            message = Confirm_Template()
+            line_bot_api.reply_message(event.reply_token, message)
+            '''
             message = TextSendMessage(text= '你好'+name)
             line_bot_api.reply_message(event.reply_token, message)
+            '''
         else:
             sheet_id.update_cell(no, 2, str(1))
             message = TextSendMessage(text= '查無此人 請重新輸入')
