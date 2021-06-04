@@ -102,11 +102,10 @@ def handle_message(event):
                 
     if login_state == 0 or '重新填寫' in msg:
         sheet_id.update_cell(no, 2, str(1))
-        message = TextSendMessage(text= '請輸入姓名\n此步驟耗時較長 請稍候')
+        message = TextSendMessage(text= '請輸入姓名 若超過1分鐘沒有回應請再次輸入')
         line_bot_api.reply_message(event.reply_token, message)
 
     if login_state == 1:
-        sheet_id.update_cell(no, 2, str(2))
         student_num = int(sheet_name.cell(1,1).value)
         name = msg
         seatnum = ''
@@ -121,6 +120,7 @@ def handle_message(event):
                     break
                     
         if name_exist:
+            sheet_id.update_cell(no, 2, str(2))
             sheet_id.update_cell(no, 3, _class)
             sheet_id.update_cell(no, 4, seatnum)
             sheet_id.update_cell(no, 5, name)
@@ -135,7 +135,7 @@ def handle_message(event):
                     actions=[
                         PostbackTemplateAction(
                             label="確認",
-                            text="確認資料 開始聽力測驗 請點開影片檔案 並選出你聽到的單字 如果沒有影片出現時 請輸入@重新載入題目 並注意重複作答系統不予計分",
+                            text="開始 Unit 3 聽力測驗 請點開影片檔案 並選出你聽到的單字 若超過30秒沒有出現題目 請輸入@重新載入題目 並注意重複作答系統不予計分",
                             data="會員註冊"
                         ),
                         MessageTemplateAction(
@@ -154,18 +154,18 @@ def handle_message(event):
 
     if '確認資料' in msg or '#0' in msg:
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/bkm2cPn.mp4', 
+            original_content_url='https://imgur.com/sGnmpiG.mp4', 
             preview_image_url='https://imgur.com/2CJYX6c.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'usually', text = '#1 your ans : usually\ncorrect ans : usually\ngood job!')
+                        action = MessageAction(label = 'subjick', text = '#1 your ans : subjick\ncorrect ans : subject')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#1 your ans:watch TV\ncorrect ans:usually')
+                        action = MessageAction(label = 'subject', text = '#1 your ans : subject\ncorrect ans : subject\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'play sports', text = '#1 your ans:play sports\ncorrect ans:usually')
+                        action = MessageAction(label = 'subjict', text = '#1 your ans : subjict\ncorrect ans : subject')
                     ),  
                 ]
             )
@@ -176,20 +176,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,7).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 7, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 7, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/FDujC2X.mp4', 
+            original_content_url='https://imgur.com/ssC2YWd.mp4', 
             preview_image_url='https://imgur.com/4ARs5aO.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'afternoon', text = '#2 your ans : afternoon\ncorrect ans : after school')
+                        action = MessageAction(label = 'favor', text = '#2 your ans : favor\ncorrect ans : favorite')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'after school', text = '#2 your ans : after school\ncorrect ans : after school\ngood job!')
+                        action = MessageAction(label = 'favorite', text = '#2 your ans : favorite\ncorrect ans : favorite\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'after work', text = '#2 your ans : after work\ncorrect ans : after school')
+                        action = MessageAction(label = 'faveret', text = '#2 your ans : faveret\ncorrect ans : favorite')
                     ),  
                 ]
             )
@@ -200,20 +201,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,8).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 8, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 8, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/0v0MtpW.mp4', 
+            original_content_url='https://imgur.com/RETJM3W.mp4', 
             preview_image_url='https://imgur.com/hZHDi6D.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch movies', text = '#3 your ans : watch movies\ncorrect ans : watch TV')
+                        action = MessageAction(label = 'social studies', text = '#3 your ans : social studies\ncorrect ans : social studies\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'new TV', text = '#3 your ans : new TV\ncorrect ans : watch TV')
+                        action = MessageAction(label = 'sosial studies', text = '#3 your ans : sosial studies\ncorrect ans : social studies')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'watch TV', text = '#3 your ans : watch TV\ncorrect ans : watch TV\ngood job!')
+                        action = MessageAction(label = 'social studys', text = '#3 your ans : social studys\ncorrect ans : social studies')
                     ),  
                 ]
             )
@@ -224,20 +226,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,9).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 9, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 9, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/Bp8x0Ll.mp4', 
+            original_content_url='https://imgur.com/k26ZoDJ.mp4', 
             preview_image_url='https://imgur.com/t7keRVy.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'walk the dog', text = '#4 your ans : walk the dog\ncorrect ans : walk the dog\ngood job!')
+                        action = MessageAction(label = 'musical', text = '#4 your ans : musical\ncorrect ans : music')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'walk in the park', text = '#4 your ans : walk in the park\ncorrect ans : walk the dog')
+                        action = MessageAction(label = 'muzic', text = '#4 your ans : muzic\ncorrect ans : music')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'cats and dogs', text = '#4 your ans : cats and dogs\ncorrect ans : walk the dog')
+                        action = MessageAction(label = 'music', text = '#4 your ans : music\ncorrect ans : music\ngood job!')
                     ),  
                 ]
             )
@@ -248,20 +251,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,10).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 10, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 10, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/mITn8uT.mp4', 
+            original_content_url='https://imgur.com/YCVRCto.mp4', 
             preview_image_url='https://imgur.com/st821yg.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'save the world', text = '#5 your ans : save the world\ncorrect ans : surf the internet')
+                        action = MessageAction(label = 'mass', text = '#5 your ans : mass\ncorrect ans : math')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'surf the internet', text = '#5 your ans : surf the internet\ncorrect ans : surf the internet\ngood job!')
+                        action = MessageAction(label = 'mase', text = '#5 your ans : mase\ncorrect ans : math')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'surf is up', text = '#5 your ans : surf is up\ncorrect ans : surf the internet')
+                        action = MessageAction(label = 'math', text = '#5 your ans : math\ncorrect ans : math\ngood job!')
                     ),  
                 ]
             )
@@ -272,20 +276,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,11).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 11, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 11, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/cRpfUGP.mp4', 
+            original_content_url='https://imgur.com/mWrfDIu.mp4', 
             preview_image_url='https://imgur.com/tOUdChN.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'ride a bike', text = '#6 your ans : ride a bike\ncorrect ans : read books')
+                        action = MessageAction(label = 'hir', text = '#6 your ans : hir\ncorrect ans : her')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'read papers', text = '#6 your ans : read papers\ncorrect ans : read books')
+                        action = MessageAction(label = 'her', text = '#6 your ans : her\ncorrect ans : her\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'read books', text = '#6 your ans : read books\ncorrect ans : read books\ngood job!')
+                        action = MessageAction(label = 'fer', text = '#6 your ans : fer\ncorrect ans : her')
                     ),  
                 ]
             )
@@ -296,20 +301,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,12).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 12, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 12, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/RdhTRe4.mp4', 
+            original_content_url='https://imgur.com/9IGNXlX.mp4', 
             preview_image_url='https://imgur.com/7ezNT5R.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'play the piano', text = '#7 your ans : play the piano\ncorrect ans : play sports')
+                        action = MessageAction(label = 'noze', text = '#7 your ans : noze\ncorrect ans : nose')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'play sports', text = '#7 your ans : play sports\ncorrect ans : play sports\ngood job!')
+                        action = MessageAction(label = 'nose', text = '#7 your ans : nose\ncorrect ans : nose\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'play the sport', text = '#7 your ans : play the sport\ncorrect ans : play sports')
+                        action = MessageAction(label = 'nozzle', text = '#7 your ans : nozzle\ncorrect ans : nose')
                     ),  
                 ]
             )
@@ -320,20 +326,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,13).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 13, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 13, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/LDIemg1.mp4', 
+            original_content_url='https://imgur.com/C3wzZHC.mp4', 
             preview_image_url='https://imgur.com/BgRCXLX.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'listen to music', text = '#8 your ans : listen to music\ncorrect ans : listen to music\ngood job!')
+                        action = MessageAction(label = 'boat', text = '#8 your ans : boat\ncorrect ans : boat\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'list of music', text = '#8 your ans : list of music\ncorrect ans : listen to music')
+                        action = MessageAction(label = 'boot', text = '#8 your ans : boot\ncorrect ans : boat')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = "that's the music", text = "#8 your ans : that's the music\ncorrect ans : listen to music")
+                        action = MessageAction(label = "board", text = "#8 your ans : board\ncorrect ans : boat")
                     ),  
                 ]
             )
@@ -344,20 +351,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,14).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 14, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 14, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/lVxpNDp.mp4', 
+            original_content_url='https://imgur.com/cM6Zsqz.mp4', 
             preview_image_url='https://imgur.com/fdgthsL.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'do housework', text = '#9 your ans : do housework\ncorrect ans : do my homework')
+                        action = MessageAction(label = 'snooze', text = '#9 your ans : snooze\ncorrect ans : snow')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'do me a favor', text = '#9 your ans : do me a favor\ncorrect ans : do my homework')
+                        action = MessageAction(label = 'snow', text = '#9 your ans : snow\ncorrect ans : snow\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = "do my homework", text = "#9 your ans : do my homework\ncorrect ans : do my homework\ngood job!")
+                        action = MessageAction(label = "snail", text = "#9 your ans : snail\ncorrect ans : snow")
                     ),  
                 ]
             )
@@ -368,20 +376,21 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,15).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 15, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 15, '1')
         message = VideoSendMessage(
-            original_content_url='https://imgur.com/nRqfbNB.mp4', 
+            original_content_url='https://imgur.com/GboIgZG.mp4', 
             preview_image_url='https://imgur.com/qRmhPT1.png',
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'some time', text = '# 10 your ans : some time\ncorrect ans : sometimes')
+                        action = MessageAction(label = 'show', text = '# 10 your ans : show\ncorrect ans : show\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'sometimes', text = '# 10 your ans : sometimes\ncorrect ans : sometimes\ngood job!')
+                        action = MessageAction(label = 'snow', text = '# 10 your ans : snow\ncorrect ans : show')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = "some times", text = "# 10 your ans : some times\ncorrect ans : sometimes")
+                        action = MessageAction(label = "shoes", text = "# 10 your ans : shoes\ncorrect ans : show")
                     ),  
                 ]
             )
@@ -394,25 +403,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,16).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 16, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 16, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 11',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/E4wtVGJ.png',
                 title = "選擇填入空格的詞句",
-                text = "I ____ do homework after school.",
+                text = "What _____  your favorite subjects? ",
                 actions=[
                     MessageTemplateAction(
-                        label = 'like',
-                        text = '# 11 your ans : like\ncorrect ans : usually'
+                        label = 'is',
+                        text = '# 11 your ans : is\ncorrect ans : are'
                     ),
                     MessageTemplateAction(
-                        label = 'usually',
-                        text = '# 11 your ans : usually\ncorrect ans : usually\ngood job!'
+                        label = 'are',
+                        text = '# 11 your ans : are\ncorrect ans : are\ngood job!'
                     ),
                     MessageTemplateAction(
-                        label= 'have',
-                        text = '# 11 your ans : have\ncorrect ans : usually'
+                        label= 'do',
+                        text = '# 11 your ans : do\ncorrect ans : are'
                     )
                 ]
             )
@@ -424,25 +434,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,17).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 17, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 17, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 12',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/Rp9LKBa.png',
                 title = "選擇填入空格的詞句",
-                text = "Jack usually ___ the dog in the morning.",
+                text = "My favorite ________ are science and math. ",
                 actions=[
                     MessageTemplateAction(
-                        label = 'play the piano',
-                        text = '# 12 your ans : play the piano\ncorrect ans : walks'
+                        label = 'subject',
+                        text = '# 12 your ans : subject\ncorrect ans : subjects'
                     ),
                     MessageTemplateAction(
-                        label = 'listen',
-                        text = '# 12 your ans : listen\ncorrect ans : walks'
+                        label = 'subjects',
+                        text = '# 12 your ans : subjects\ncorrect ans : subjects\ngood job!'
                     ),
                     MessageTemplateAction(
-                        label= 'walks',
-                        text = '# 12 your ans : walks\ncorrect ans : walks\ngood job!'
+                        label= 'book',
+                        text = '# 12 your ans : book\ncorrect ans : subjects'
                     )
                 ]
             )
@@ -453,25 +464,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,18).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 18, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 18, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 13',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/vriIBqw.png',
                 title = "選擇填入空格的詞句",
-                text = "Mom and I sometimes _____ the internet at home.",
+                text = "______ favorite subject is music.",
                 actions=[
                     MessageTemplateAction(
-                        label = 'browse',
-                        text = '# 13 your ans : browse\ncorrect ans : surf'
+                        label = "tina's",
+                        text = "# 13 your ans : tina's\ncorrect ans : Tina's"
                     ),
                     MessageTemplateAction(
-                        label = 'look',
-                        text = '# 13 your ans : look\ncorrect ans : surf'
+                        label = 'Tina',
+                        text = "# 13 your ans : Tina\ncorrect ans : Tina's"
                     ),
                     MessageTemplateAction(
-                        label= 'surf',
-                        text = '# 13 your ans : surf\ncorrect ans : surf\ngood job!'
+                        label= "Tina's",
+                        text = "# 13 your ans : Tina's\ncorrect ans : Tina's\ngood job!"
                     )
                 ]
             )
@@ -482,25 +494,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,19).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 19, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 19, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 14',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/2ktphE6.png',
                 title = "選擇填入空格的詞句",
-                text = "______ you usually play sports in after work?",
+                text = "A:What is Jack's favorite subject? B: ______ favorite subject is PE.",
                 actions=[
                     MessageTemplateAction(
-                        label = 'Do',
-                        text = '# 14 your ans : Do\ncorrect ans : Do\ngood job!'
+                        label = 'My',
+                        text = '# 14 your ans : My\ncorrect ans : His'
                     ),
                     MessageTemplateAction(
-                        label = 'Does',
-                        text = '# 14 your ans : Does\ncorrect ans : Do'
+                        label = 'Your',
+                        text = '# 14 your ans : Your\ncorrect ans : His'
                     ),
                     MessageTemplateAction(
-                        label= 'Are',
-                        text = '# 14 your ans : Are\ncorrect ans : Do'
+                        label= 'His',
+                        text = '# 14 your ans : His\ncorrect ans : His\ngood job!'
                     )
                 ]
             )
@@ -511,25 +524,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,20).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 20, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 20, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 15',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/NSYMEMS.png',
                 title = "選擇填入空格的詞句",
-                text = "________ Lily ________ homework after school?",
+                text = "A:What is the dog's favorite food? B: ______ favorite food is meat.",
                 actions=[
                     MessageTemplateAction(
-                        label = 'Do does',
-                        text = '# 15 your ans : Do does\ncorrect ans : Does do'
+                        label = 'Her',
+                        text = '# 15 your ans : Her\ncorrect ans : Its'
                     ),
                     MessageTemplateAction(
-                        label = 'Do do',
-                        text = '# 15 your ans : Do do\ncorrect ans : Does do'
+                        label = 'His',
+                        text = '# 15 your ans : His\ncorrect ans : Its'
                     ),
                     MessageTemplateAction(
-                        label= 'Does do',
-                        text = '# 15 your ans : Does do\ncorrect ans : Does do\ngood job!'
+                        label= 'Its',
+                        text = '# 15 your ans : Its\ncorrect ans : Its\ngood job!'
                     )
                 ]
             )
@@ -540,25 +554,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,21).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 21, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 21, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 16',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/9ksK0is.png',
                 title = "選擇填入空格的詞句",
-                text = "_______ does your brother do after scool?",
+                text = "A:What is Mom's favorite food? B: ______ favorite food is pizza.",
                 actions=[
                     MessageTemplateAction(
-                        label = 'When',
-                        text = '# 16 your ans : When\ncorrect ans : What'
+                        label = "Mom's",
+                        text = "# 16 your ans : Mom's\ncorrect ans : Her"
                     ),
                     MessageTemplateAction(
-                        label = 'Where',
-                        text = '# 16 your ans : Where\ncorrect ans : What'
+                        label = 'Her',
+                        text = '# 16 your ans : Her\ncorrect ans : Her\ngood job!'
                     ),
                     MessageTemplateAction(
-                        label= 'What',
-                        text = '# 16 your ans : What\ncorrect ans : What\ngood job!'
+                        label= 'My',
+                        text = '# 16 your ans : My\ncorrect ans : Her'
                     )
                 ]
             )
@@ -569,25 +584,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,22).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 22, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 22, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 17',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/Y1vvXux.png',
                 title = "選擇填入空格的詞句",
-                text = "A: Does Amy read books after school? B: Yes, _____ _____. ",
+                text = "A: Is  your favorite subject Chinese ? B:No, _______.",
                 actions=[
                     MessageTemplateAction(
-                        label = 'she does',
-                        text = '# 17 your ans : she does\ncorrect ans : she does\ngood job!'
+                        label = "I'm not",
+                        text = "# 17 your ans : I'm not\ncorrect ans : it isn't"
                     ),
                     MessageTemplateAction(
-                        label = 'he does',
-                        text = '# 17 your ans : he does\ncorrect ans : she does'
+                        label = 'it is',
+                        text = "# 17 your ans : it is\ncorrect ans : it isn't"
                     ),
                     MessageTemplateAction(
-                        label= 'she do',
-                        text = '# 17 your ans : she do\ncorrect ans : she does'
+                        label= "it isn't",
+                        text = "# 17 your ans : it isn't\ncorrect ans : it isn't\ngood job!"
                     )
                 ]
             )
@@ -598,25 +614,27 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,23).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 23, '1')
         sheet_id.update_cell(no, 23, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 18',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/SJoGeQT.png',
                 title = "選擇填入空格的詞句",
-                text = "A: What do you do in the morning? B:_______ listen to music.",
+                text = "Uh-oh! The magic light doesn't _______.",
                 actions=[
                     MessageTemplateAction(
-                        label = 'You',
-                        text = '# 18 your ans : You\ncorrect ans : I'
+                        label = 'work',
+                        text = '# 18 your ans : work\ncorrect ans : work\ngood job!'
                     ),
                     MessageTemplateAction(
-                        label = 'He',
-                        text = '# 18 your ans : He\ncorrect ans : I'
+                        label = 'works',
+                        text = '# 18 your ans : works\ncorrect ans : work'
                     ),
                     MessageTemplateAction(
-                        label= 'I',
-                        text = '# 18 your ans : I\ncorrect ans : I\ngood job!'
+                        label= 'walk',
+                        text = '# 18 your ans : walk\ncorrect ans : work'
                     )
                 ]
             )
@@ -627,25 +645,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,24).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 24, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 24, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 19',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/JQZd2b9.png',
                 title = "選擇填入空格的詞句",
-                text = "Do you ________ walk the dog in the park?",
+                text = "No one can help you. ________ the music!",
                 actions=[
                     MessageTemplateAction(
-                        label = 'want',
-                        text = '# 19 your ans : want\ncorrect ans : sometimes'
+                        label = 'Listen to',
+                        text = '# 19 your ans : Listen to\ncorrect ans : Face'
                     ),
                     MessageTemplateAction(
-                        label = 'sometimes',
-                        text = '# 19 your ans : sometimes\ncorrect ans : sometimes\ngood job!'
+                        label = 'Head',
+                        text = '# 19 your ans : Head\ncorrect ans : Face'
                     ),
                     MessageTemplateAction(
-                        label= 'no',
-                        text = '# 19 your ans : no\ncorrect ans : sometimes'
+                        label= 'Face',
+                        text = '# 19 your ans : Face\ncorrect ans : Face\ngood job!'
                     )
                 ]
             )
@@ -656,25 +675,26 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,25).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 25, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 25, '1')
         message = TemplateSendMessage(
             alt_text = 'Problem 20',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/goWtiMu.png',
                 title = "選擇填入空格的詞句",
-                text = "I ______ usually watch TV after school.",
+                text = "I _____ ____ idea! Let's go to Madame Curie.",
                 actions=[
                     MessageTemplateAction(
-                        label = "don't",
-                        text = "# 20 your ans : don't\ncorrect ans : don't\ngood job!"
+                        label = "think a",
+                        text = "# 20 your ans : think a\ncorrect ans : have an"
                     ),
                     MessageTemplateAction(
-                        label = "no",
-                        text = "# 20 your ans : no\ncorrect ans : don't"
+                        label = "have a",
+                        text = "# 20 your ans : have a\ncorrect ans : have an"
                     ),
                     MessageTemplateAction(
-                        label = "not",
-                        text = "# 20 your ans : not\ncorrect ans : don't"
+                        label = "have an",
+                        text = "# 20 your ans : have an\ncorrect ans : have an\ngood job!"
                     )
                 ]
             )
@@ -685,7 +705,8 @@ def handle_message(event):
         if 'good job!' in msg and sheet_id.cell(no,26).value == '0':
             score = str(int(sheet_id.cell(no,6).value) + 5)
             sheet_id.update_cell(no, 6, score)
-        sheet_id.update_cell(no, 26, '1')
+        if 'ans' in msg:
+            sheet_id.update_cell(no, 26, '1')
         message = TemplateSendMessage(
             alt_text = 'finished!',
             template=ButtonsTemplate(
