@@ -152,7 +152,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
             
 
-    if '確認資料' in msg or '#0' in msg:
+    if '開始' in msg or '#0' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/sGnmpiG.mp4', 
             preview_image_url='https://imgur.com/2CJYX6c.png',
@@ -162,10 +162,10 @@ def handle_message(event):
                         action = MessageAction(label = 'subjick', text = '#1 your ans : subjick\ncorrect ans : subject')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'subject', text = '#1 your ans:subject TV\ncorrect ans:subject\ngood job!')
+                        action = MessageAction(label = 'subject', text = '#1 your ans : subject\ncorrect ans : subject\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'subjict', text = '#1 your ans:subjict\ncorrect ans:subject')
+                        action = MessageAction(label = 'subjict', text = '#1 your ans : subjict\ncorrect ans : subject')
                     ),  
                 ]
             )
@@ -470,7 +470,7 @@ def handle_message(event):
             alt_text = 'Problem 13',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/vriIBqw.png',
-               
+                
                 text = "______ favorite subject is music.",
                 actions=[
                     MessageTemplateAction(
@@ -500,8 +500,8 @@ def handle_message(event):
             alt_text = 'Problem 14',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/2ktphE6.png',
-                
-                text = "A:What is Jack's favorite subject? B: ______ favorite subject is PE.",
+                title = "A:What is Jack's favorite subject? ",
+                text = "B: ______ favorite subject is PE.",
                 actions=[
                     MessageTemplateAction(
                         label = 'My',
@@ -530,8 +530,8 @@ def handle_message(event):
             alt_text = 'Problem 15',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/NSYMEMS.png',
-               
-                text = "A:What's the dog's favorite food? B: ______ favorite food is meat.",
+                title = "A:What's the dog's favorite food? ",
+                text = "B: ______ favorite food is meat.",
                 actions=[
                     MessageTemplateAction(
                         label = 'Her',
@@ -560,8 +560,8 @@ def handle_message(event):
             alt_text = 'Problem 16',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/9ksK0is.png',
-                
-                text = "A:What is Mom's favorite food? B: ______ favorite food is pizza.",
+                title = "A:What is Mom's favorite food? ",
+                text = "B: ______ favorite food is pizza.",
                 actions=[
                     MessageTemplateAction(
                         label = "Mom's",
@@ -590,8 +590,8 @@ def handle_message(event):
             alt_text = 'Problem 17',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/Y1vvXux.png',
-                
-                text = "A: Is  your favorite subject Chinese ? B:No, _______.",
+                title = "A: Is  your favorite subject Chinese ? ",
+                text = "B:No, _______.",
                 actions=[
                     MessageTemplateAction(
                         label = "I'm not",
