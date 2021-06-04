@@ -152,7 +152,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
             
 
-    if '開始' in msg or '#0' in msg:
+    if '確認資料' in msg or '#0' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/sGnmpiG.mp4', 
             preview_image_url='https://imgur.com/2CJYX6c.png',
@@ -162,10 +162,10 @@ def handle_message(event):
                         action = MessageAction(label = 'subjick', text = '#1 your ans : subjick\ncorrect ans : subject')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'subject', text = '#1 your ans : subject\ncorrect ans : subject\ngood job!')
+                        action = MessageAction(label = 'subject', text = '#1 your ans:subject TV\ncorrect ans:subject\ngood job!')
                     ),
                     QuickReplyButton(
-                        action = MessageAction(label = 'subjict', text = '#1 your ans : subjict\ncorrect ans : subject')
+                        action = MessageAction(label = 'subjict', text = '#1 your ans:subjict\ncorrect ans:subject')
                     ),  
                 ]
             )
@@ -284,7 +284,7 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'hir', text = '#6 your ans : hir\ncorrect ans : her')
+                        action = MessageAction(label = 'hir', text = '#6 your ans : hir\ncorrect ans : read books')
                     ),
                     QuickReplyButton(
                         action = MessageAction(label = 'her', text = '#6 your ans : her\ncorrect ans : her\ngood job!')
@@ -309,7 +309,7 @@ def handle_message(event):
             quick_reply = QuickReply(
                 items = [
                     QuickReplyButton(
-                        action = MessageAction(label = 'noze', text = '#7 your ans : noze\ncorrect ans : nose')
+                        action = MessageAction(label = 'noze', text = '#7 your ans : noze\ncorrect ans : noses')
                     ),
                     QuickReplyButton(
                         action = MessageAction(label = 'nose', text = '#7 your ans : nose\ncorrect ans : nose\ngood job!')
@@ -440,7 +440,7 @@ def handle_message(event):
             alt_text = 'Problem 12',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/Rp9LKBa.png',
-                title = "選擇填入空格的詞句",
+                
                 text = "My favorite ________ are science and math. ",
                 actions=[
                     MessageTemplateAction(
@@ -470,7 +470,7 @@ def handle_message(event):
             alt_text = 'Problem 13',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/vriIBqw.png',
-                title = "選擇填入空格的詞句",
+               
                 text = "______ favorite subject is music.",
                 actions=[
                     MessageTemplateAction(
@@ -500,7 +500,7 @@ def handle_message(event):
             alt_text = 'Problem 14',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/2ktphE6.png',
-                title = "選擇填入空格的詞句",
+                
                 text = "A:What is Jack's favorite subject? B: ______ favorite subject is PE.",
                 actions=[
                     MessageTemplateAction(
@@ -530,8 +530,8 @@ def handle_message(event):
             alt_text = 'Problem 15',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/NSYMEMS.png',
-                title = "選擇填入空格的詞句",
-                text = "A:What is the dog's favorite food? B: ______ favorite food is meat.",
+               
+                text = "A:What's the dog's favorite food? B: ______ favorite food is meat.",
                 actions=[
                     MessageTemplateAction(
                         label = 'Her',
@@ -560,7 +560,7 @@ def handle_message(event):
             alt_text = 'Problem 16',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/9ksK0is.png',
-                title = "選擇填入空格的詞句",
+                
                 text = "A:What is Mom's favorite food? B: ______ favorite food is pizza.",
                 actions=[
                     MessageTemplateAction(
@@ -590,7 +590,7 @@ def handle_message(event):
             alt_text = 'Problem 17',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/Y1vvXux.png',
-                title = "選擇填入空格的詞句",
+                
                 text = "A: Is  your favorite subject Chinese ? B:No, _______.",
                 actions=[
                     MessageTemplateAction(
@@ -621,7 +621,7 @@ def handle_message(event):
             alt_text = 'Problem 18',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/SJoGeQT.png',
-                title = "選擇填入空格的詞句",
+                
                 text = "Uh-oh! The magic light doesn't _______.",
                 actions=[
                     MessageTemplateAction(
@@ -651,7 +651,7 @@ def handle_message(event):
             alt_text = 'Problem 19',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/JQZd2b9.png',
-                title = "選擇填入空格的詞句",
+                
                 text = "No one can help you. ________ the music!",
                 actions=[
                     MessageTemplateAction(
@@ -681,7 +681,7 @@ def handle_message(event):
             alt_text = 'Problem 20',
             template=ButtonsTemplate(
                 thumbnail_image_url = 'https://imgur.com/goWtiMu.png',
-                title = "選擇填入空格的詞句",
+                
                 text = "I _____ ____ idea! Let's go to Madame Curie.",
                 actions=[
                     MessageTemplateAction(
