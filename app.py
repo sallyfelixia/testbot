@@ -135,7 +135,7 @@ def handle_message(event):
                     actions=[
                         PostbackTemplateAction(
                             label="確認",
-                            text="開始 Unit 3 聽力測驗 請點開影片檔案 並選出你聽到的單字 若超過30秒沒有出現題目 請輸入@重新載入題目 並注意重複作答系統不予計分",
+                            text="開始 Unit 3 聽力測驗 請點開影片檔案 並選出你聽到的單字 若超過30秒沒有出現題目 請複製對話中最後一條訊息並傳送 注意重複作答系統不予計分",
                             data="會員註冊"
                         ),
                         MessageTemplateAction(
