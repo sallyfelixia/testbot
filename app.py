@@ -152,7 +152,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
             
 
-    if '確認資料' in msg or '#0' in msg:
+    if '開始' in msg or '#0' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/sGnmpiG.mp4', 
             preview_image_url='https://imgur.com/2CJYX6c.png',
