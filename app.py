@@ -49,10 +49,10 @@ app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 # Channel Access Token
-line_bot_api = LineBotApi('TOi303gvTtC4ncGBIaUJmSLDvjRZrnbzpBuAr1f2SMh8WtjIXmTzFH1ALHzqpNruGPYT+c2KGNbIeDM5Hzn9fjR5m3ql1wvyFGPNk956PuA9U3HmcInqabuiPpxwRX/77UiN2iiF2aRZ2cKEg9LREwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('LBD7s+5/9+m5nw1DBvIeDlHNtjzy71IMdlxSm4G5G6I0jciOFJUzvOnqs0O0Ij5795eq/stf9o+RSqm8WLtHuE+J+sAuiz8nYq82KZxLIHiph6Ae5lS62MJQsAM1FCvZFm7gGNmBuSp54OBWYT3/xwdB04t89/1O/w1cDnyilFU=')
 
 # Channel Secret
-handler = WebhookHandler('57853dccc508c4b194e42454586e9969')
+handler = WebhookHandler('0d11590767aaaf4b9de5c45c7f92c748')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -145,6 +145,49 @@ def handle_message(event):
     elif '啟動節費車充方案' in msg:
         message = TextSendMessage(text= '已啟動智能充電模式')
         line_bot_api.reply_message(event.reply_token, message)
+    elif '家電用電資訊' in msg:
+        message = TemplateSendMessage(
+            alt_text='圖片旋轉木馬',
+            template=ImageCarouselTemplate(
+                columns=[
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/iB4vh17.png",
+                        action=MessageTemplateAction(
+                            label="冰箱",
+                            text="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/GvWKSo1.png",
+                        action=MessageTemplateAction(
+                            label="冷氣",
+                            text="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/8cn6htA.png",
+                        action=MessageTemplateAction(
+                            label="烙鐵",
+                            text="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/eXW4vlr.png",
+                        action=MessageTemplateAction(
+                            label="洗衣機",
+                            text="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/dhtdoyC.png",
+                        action=MessageTemplateAction(
+                            label="電視",
+                            text="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
+                        )
+                    )
+                ]
+            )
+        )
     elif '進入法師的快樂商店' in msg:
         message = TemplateSendMessage(
             alt_text='圖片旋轉木馬',
@@ -187,7 +230,7 @@ def handle_message(event):
                     )
                 ]
             )
-    )
+        )
     elif '使用角色' in msg:
         message = VideoSendMessage(
             original_content_url='https://imgur.com/SqDVA5E.mp4', 
@@ -218,6 +261,17 @@ def handle_message(event):
                                 MessageTemplateAction(
                                     label='點我查詢',
                                     text='電動車用電資訊'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://imgur.com/wNVluYP.png',
+                            title='家電用電資訊',
+                            text='查看各電器用電狀況',
+                            actions=[
+                                MessageTemplateAction(
+                                    label='點我查詢',
+                                    text='家電用電資訊'
                                 )
                             ]
                         ),
