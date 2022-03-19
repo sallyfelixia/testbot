@@ -145,6 +145,9 @@ def handle_message(event):
     elif '啟動節費車充方案' in msg:
         message = TextSendMessage(text= '已啟動智能充電模式')
         line_bot_api.reply_message(event.reply_token, message)
+    elif '家電用電資訊' in msg:
+        message = TextSendMessage(text= 'https://reurl.cc/bkrDb3')
+        line_bot_api.reply_message(event.reply_token, message)
     elif '進入法師的快樂商店' in msg:
         message = TemplateSendMessage(
             alt_text='圖片旋轉木馬',
@@ -222,7 +225,7 @@ def handle_message(event):
                             ]
                         ),
                         CarouselColumn(
-                            thumbnail_image_url='https://imgur.com/QlLsw6N.png',
+                            thumbnail_image_url='https://imgur.com/iB4vh17.png',
                             title='家電用電資訊',
                             text='查看各個家電的用電資訊',
                             actions=[
