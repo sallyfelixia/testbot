@@ -154,38 +154,38 @@ def handle_message(event):
             template=ImageCarouselTemplate(
                 columns=[
                     ImageCarouselColumn(
-                        image_url="https://imgur.com/SqOVwVe.png",
+                        image_url="https://imgur.com/sGyHay0.png",
                         action=MessageTemplateAction(
-                            label="雪莉 ⚡️300",
-                            text="餘額不足解鎖雪莉!\n重新進入法師的快樂商店"
+                            label="冰箱",
+                            text="尚未連接冰箱"
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url="https://imgur.com/KQBMPyi.png",
+                        image_url="https://imgur.com/aPCse0f.png",
                         action=MessageTemplateAction(
-                            label="傑哥 ⚡️500",
-                            text="餘額不足解鎖雪莉!\n重新進入法師的快樂商店"
+                            label="電視",
+                            text="尚未連接冰箱"
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url="https://imgur.com/5niCamH.png",
+                        image_url="https://imgur.com/5WE80aO.png",
                         action=MessageTemplateAction(
-                            label="曾晴",
-                            text="使用角色 曾晴"
+                            label="冷氣",
+                            text="尚未連接冷氣"
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url="https://imgur.com/DcOVNZ6.png",
+                        image_url="https://imgur.com/1R0p3XE.png",
                         action=MessageTemplateAction(
-                            label="管爺 ⚡️400",
-                            text="餘額不足解鎖管爺!\n重新進入法師的快樂商店"
+                            label="洗衣機",
+                            text="尚未連接洗衣機"
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url="https://imgur.com/2rkUYNt.png",
-                        action=MessageTemplateAction(
-                            label="HowHow ⚡️400",
-                            text="餘額不足解鎖HowHow!\n重新進入法師的快樂商店"
+                        image_url="https://imgur.com/8cn6htA.png",
+                        action=URITemplateAction(
+                            label="電烙鐵",
+                            uri="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
                         )
                     )
                 ]
