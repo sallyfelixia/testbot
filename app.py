@@ -101,10 +101,10 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     elif '查詢本月用電' in msg:
-        message = TextSendMessage(text= '本月平均用電功率 : 2743 W\n相當 5')
+        message = TextSendMessage(text= '本月平均用電功率 : 2743 W\n相當 5 個電鍋同時運作')
         line_bot_api.reply_message(event.reply_token, message)
     elif '查詢本月電費' in msg:
-        message = TextSendMessage(text= '查詢本月電費 : 5472 元')
+        message = TextSendMessage(text= '查詢本月電費 : 5472 元\n37%離峰時間\n36%半離峰時間\n25%尖峰時間')
         line_bot_api.reply_message(event.reply_token, message)
     elif '用電趨勢查詢' in msg:
         message = ImageSendMessage(
@@ -218,6 +218,17 @@ def handle_message(event):
                                 MessageTemplateAction(
                                     label='點我查詢',
                                     text='電動車用電資訊'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://imgur.com/QlLsw6N.png',
+                            title='家電用電資訊',
+                            text='查看各個家電的用電資訊',
+                            actions=[
+                                MessageTemplateAction(
+                                    label='點我查詢',
+                                    text='家電用電資訊'
                                 )
                             ]
                         ),
