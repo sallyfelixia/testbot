@@ -145,9 +145,52 @@ def handle_message(event):
     elif '啟動節費車充方案' in msg:
         message = TextSendMessage(text= '已啟動智能充電模式')
         line_bot_api.reply_message(event.reply_token, message)
+    # elif '家電用電資訊' in msg:
+    #     message = TextSendMessage(text= 'https://reurl.cc/bkrDb3')
+    #     line_bot_api.reply_message(event.reply_token, message)
     elif '家電用電資訊' in msg:
-        message = TextSendMessage(text= 'https://reurl.cc/bkrDb3')
-        line_bot_api.reply_message(event.reply_token, message)
+        message = TemplateSendMessage(
+            alt_text='圖片旋轉木馬',
+            template=ImageCarouselTemplate(
+                columns=[
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/SqOVwVe.png",
+                        action=MessageTemplateAction(
+                            label="雪莉 ⚡️300",
+                            text="餘額不足解鎖雪莉!\n重新進入法師的快樂商店"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/KQBMPyi.png",
+                        action=MessageTemplateAction(
+                            label="傑哥 ⚡️500",
+                            text="餘額不足解鎖雪莉!\n重新進入法師的快樂商店"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/5niCamH.png",
+                        action=MessageTemplateAction(
+                            label="曾晴",
+                            text="使用角色 曾晴"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/DcOVNZ6.png",
+                        action=MessageTemplateAction(
+                            label="管爺 ⚡️400",
+                            text="餘額不足解鎖管爺!\n重新進入法師的快樂商店"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/2rkUYNt.png",
+                        action=MessageTemplateAction(
+                            label="HowHow ⚡️400",
+                            text="餘額不足解鎖HowHow!\n重新進入法師的快樂商店"
+                        )
+                    )
+                ]
+            )
+    )
     elif '進入法師的快樂商店' in msg:
         message = TemplateSendMessage(
             alt_text='圖片旋轉木馬',
