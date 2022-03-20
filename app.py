@@ -142,13 +142,9 @@ def handle_message(event):
     elif '電動車充電狀況' in msg:
         message = TextSendMessage(text= '電動車充電狀況 : 充電中 \n餘電 : 30%')
         line_bot_api.reply_message(event.reply_token, message)
-    elif '開關節費車充方案' in msg:
-        if sheet1.update_cell(1, 3, str(1)) == 0:
-            sheet1.update_cell(1, 3, str(1))
-            message = TextSendMessage(text= '已啟動智能充電模式')
-        if sheet1.update_cell(1, 3, str(1)) == 1:
-            sheet1.update_cell(1, 3, str(0))
-            message = TextSendMessage(text= '已關閉智能充電模式')
+    elif '啟動節費車充方案' in msg:
+        sheet1.update_cell(1, 3, str(1))
+        message = TextSendMessage(text= '已啟動智能充電模式')
         line_bot_api.reply_message(event.reply_token, message)
     # elif '家電用電資訊' in msg:
     #     message = TextSendMessage(text= 'https://reurl.cc/bkrDb3')
