@@ -234,7 +234,7 @@ def handle_message(event):
                         image_url="https://imgur.com/aiuqDow.png",
                         action=MessageTemplateAction(
                             label="手機充電",
-                            text= ("即時電能 : " + power + "W, 即時電壓 : " + voltage + "V即時電流 : " + current + 'A')
+                            text= ("即時電能 : " + power + "W\n即時電壓 : " + voltage + "V\n即時電流 : " + current + 'A')
                         )
                     )
                 ]
@@ -318,12 +318,23 @@ def handle_message(event):
                         ),
                         CarouselColumn(
                             thumbnail_image_url='https://imgur.com/iB4vh17.png',
-                            title='家電用電資訊',
-                            text='查看各個家電的用電資訊',
+                            title='家電用電圖表',
+                            text='查看各個家電的用電圖表',
                             actions=[
                                 MessageTemplateAction(
                                     label='點我查詢',
-                                    text='家電用電資訊'
+                                    text='家電用電圖表'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://imgur.com/1R0p3XE.png',
+                            title='家電用電數據',
+                            text='查看各個家電的用電數據',
+                            actions=[
+                                MessageTemplateAction(
+                                    label='點我查詢',
+                                    text='家電用電數據'
                                 )
                             ]
                         ),
