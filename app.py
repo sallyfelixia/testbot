@@ -137,12 +137,13 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
     elif '充電樁電費' in msg:
-        message = TextSendMessage(text= '本月充電樁電費 : 1614元')
+        message = TextSendMessage(text= '本月充電樁電費 : 1614元\n智能充電模式節省 : 120 元')
         line_bot_api.reply_message(event.reply_token, message)
     elif '電動車充電狀況' in msg:
         message = TextSendMessage(text= '電動車充電狀況 : 充電中 \n餘電 : 30%')
         line_bot_api.reply_message(event.reply_token, message)
     elif '啟動節費車充方案' in msg:
+        sheet1.update_cell(1, 3, str(1))
         message = TextSendMessage(text= '已啟動智能充電模式')
         line_bot_api.reply_message(event.reply_token, message)
     # elif '家電用電資訊' in msg:
