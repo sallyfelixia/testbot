@@ -165,7 +165,7 @@ def handle_message(event):
                         image_url="https://imgur.com/aPCse0f.png",
                         action=MessageTemplateAction(
                             label="電視",
-                            text="尚未連接冰箱"
+                            text="尚未連接電視"
                         )
                     ),
                     ImageCarouselColumn(
@@ -183,9 +183,9 @@ def handle_message(event):
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url="https://imgur.com/8cn6htA.png",
+                        image_url="https://imgur.com/aiuqDow.png",
                         action=URITemplateAction(
-                            label="電烙鐵",
+                            label="手機充電",
                             uri="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
                         )
                     )
