@@ -76,6 +76,7 @@ def handle_message(event):
     
     msg = event.message.text
     user_id = event.source.user_id
+
     if '家庭用電資訊' in msg:
         message = TemplateSendMessage(
             alt_text = '家庭用電資訊',
@@ -149,7 +150,7 @@ def handle_message(event):
     # elif '家電用電資訊' in msg:
     #     message = TextSendMessage(text= 'https://reurl.cc/bkrDb3')
     #     line_bot_api.reply_message(event.reply_token, message)
-    elif '家電用電資訊' in msg:
+    elif '家電用電圖表' in msg:
         message = TemplateSendMessage(
             alt_text='圖片旋轉木馬',
             template=ImageCarouselTemplate(
@@ -186,7 +187,54 @@ def handle_message(event):
                         image_url="https://imgur.com/aiuqDow.png",
                         action=URITemplateAction(
                             label="手機充電",
-                            uri="https://thingspeak.com/channels/1679927/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&fbclid=IwAR0mj7xHECdBOSEBsWKAzf2n1wQf5drHWuHdpLRYceXlXdO4zLYZ4tA0kuw"
+                            uri="https://thingspeak.com/channels/1679927/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"
+                        )
+                    )
+                ]
+            )
+    )
+    elif '家電用電數據' in msg:
+        n = int(sheet1.cell(1, 2).value)
+        power = sheet1.cell(n, 4).value
+        voltage = sheet1.cell(n, 5).value
+        current = sheet1.cell(n, 6).value
+        message = TemplateSendMessage(
+            alt_text='圖片旋轉木馬',
+            template=ImageCarouselTemplate(
+                columns=[
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/sGyHay0.png",
+                        action=MessageTemplateAction(
+                            label="冰箱",
+                            text="尚未連接冰箱"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/aPCse0f.png",
+                        action=MessageTemplateAction(
+                            label="電視",
+                            text="尚未連接電視"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/5WE80aO.png",
+                        action=MessageTemplateAction(
+                            label="冷氣",
+                            text="尚未連接冷氣"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/1R0p3XE.png",
+                        action=MessageTemplateAction(
+                            label="洗衣機",
+                            text="尚未連接洗衣機"
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url="https://imgur.com/aiuqDow.png",
+                        action=MessageTemplateAction(
+                            label="手機充電",
+                            text= ("即時電能 : " + power + "W, 即時電壓 : " + voltage + "V即時電流 : " + current + 'A')
                         )
                     )
                 ]
